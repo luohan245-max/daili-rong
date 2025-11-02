@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="format-detection" content="telephone=no,email=no,address=no" />
+  <meta name="theme-color" content="#0b1020" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>NodeShort • Sự kiện xem phim tháng 11</title>
+
+  <!-- Open Graph / Share -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="NodeShort • Sự kiện xem phim tháng 11" />
+  <meta property="og:description" content="Xem phim • điểm danh • nhận phần thưởng · Liên hệ Telegram" />
+  <meta property="og:image" content="./assets/nodeshort-cover.png" />
+  <link rel="preload" as="image" href="./assets/nodeshort-logo.png" />
+  <meta property="og:url" content="https://yourdomain.com/" />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href="https://yourdomain.com/" />
+
+  <link rel="dns-prefetch" href="//t.me" />
+  <link rel="preconnect" href="https://t.me" crossorigin />
+
+  <style>
+    :root{--bg:#0b1020;--card:#141a2e;--text:#e9ecf1;--muted:#b7beca;--brand:#5b8cff;--accent:#7ae3ff;--gold:#f6c453;--success:#24d07a;--danger:#ff6868;--shadow:0 12px 30px rgba(0,0,0,.35);--radius:16px;--radius-lg:22px;--maxw:880px;}
+    html,body{height:100%; overflow-x:hidden;} *{box-sizing:border-box;}
+    body{margin:0; padding:0; background:linear-gradient(180deg,#0b1020 0%,#0b1020 60%,#0f1633 100%); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
+    .container{width:100%; max-width:var(--maxw); margin-inline:auto; padding-left:calc(clamp(16px,4vw,24px) + env(safe-area-inset-left)); padding-right:calc(clamp(16px,4vw,24px) + env(safe-area-inset-right));}
+    .section{padding:clamp(18px,5vw,28px) 0;}
+    .hero{padding-top:clamp(24px,8vw,48px);} 
+    .brandbar{flex:1; display:flex; align-items:center;}
+    .logo{inline-size:108px; block-size:108px; display:inline-flex; align-items:center; justify-content:flex-start;} 
+    .logo img{width:100%; height:100%; object-fit:contain; border-radius:10px;}
+    .h1{font-size:clamp(22px,6vw,34px); font-weight:800; margin:12px 0 8px; line-height:1.25; letter-spacing:.2px;}
+    .subtitle{font-size:clamp(14px,3.8vw,18px); color:var(--muted); line-height:1.4; letter-spacing:.1px;}
+    .tagline{margin-top:12px; font-size:clamp(14px,4vw,18px); color:var(--accent); line-height:1.4; letter-spacing:.1px;} 
+    .hero-card{margin-top:18px; background:linear-gradient(145deg, rgba(20,26,46,.9), rgba(20,26,46,.6)); border:1px solid rgba(122,227,255,.15); border-radius:var(--radius-lg); padding:clamp(16px,4.5vw,22px); box-shadow:var(--shadow);} 
+    .cta{display:flex; align-items:center; justify-content:center; gap:10px; padding:14px 18px; background:linear-gradient(135deg, var(--brand), #6ea4ff); color:#fff; border:none; border-radius:14px; text-decoration:none; font-weight:700; font-size:16px; box-shadow:0 8px 16px rgba(91,140,255,.35); margin-inline:auto; line-height:1.4; letter-spacing:.1px;}
+    .cta.secondary{padding:8px 12px; background:transparent; color:var(--accent); border:1px solid rgba(122,227,255,.35); border-radius:12px; font-weight:700; font-size:14px;}
+    .card{background:#0f1736; border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); padding:16px; box-shadow:var(--shadow);} 
+    .card h3{margin:0 0 8px; font-size:clamp(16px,4.2vw,20px);} 
+    .card p{margin:6px 0; color:var(--muted); line-height:1.4; font-size:clamp(13px,3.8vw,16px); letter-spacing:.1px;} 
+    table{border-collapse:collapse; width:100%; min-width:520px;} th,td{padding:12px 10px; font-size:14px;} th{background:#121a38; color:#cfe4ff; position:sticky; top:0;}
+    tr:nth-child(even){background:#0f1633;} tr:nth-child(odd){background:#0e1531;} td:first-child{font-weight:700; color:#fff;}
+
+    /* 顶部/徽章/底栏等 */
+    .topbar{position:sticky; top:0; z-index:20; background:rgba(11,16,32,.8); backdrop-filter:blur(10px); border-bottom:1px solid rgba(255,255,255,.06);} 
+    .topbar .inner{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:calc(10px + env(safe-area-inset-top)) clamp(14px,4vw,20px) 10px;} 
+    .pill{display:inline-flex; align-items:center; gap:8px; padding:10px 12px; background:#0e1531; border:1px solid rgba(255,255,255,.08); color:var(--muted); border-radius:999px; font-size:13px;}
+    .badge-slider{display:flex; gap:12px; overflow-x:auto; padding:8px 4px; -webkit-overflow-scrolling:touch;}
+    .badge-slider img{flex:0 0 auto; width:96px; height:96px; object-fit:contain; border-radius:16px; background:#0e1531; border:1px solid rgba(255,255,255,.06);} 
+    .dock{position:sticky; bottom:0; inset-inline:0; padding:8px clamp(12px,4vw,18px); background:linear-gradient(180deg, rgba(11,16,32,0) 0%, rgba(11,16,32,.85) 28%, rgba(11,16,32,1) 100%); backdrop-filter: blur(6px);} 
+    .dock .dock-inner{display:flex; gap:10px; align-items:center; justify-content:space-between; padding-bottom:env(safe-area-inset-bottom);} 
+    .dock .cta{flex:1; padding-block:16px; border-radius:14px;}
+    .table-wrap{overflow:auto; -webkit-overflow-scrolling:touch; border:1px solid rgba(255,255,255,.06); border-radius:14px;}
+    .fade-in{animation:fade .6s ease both;} @keyframes fade{from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:none}}
+    .list{display:grid; gap:14px; margin-top:10px;}
+    .li{display:flex; gap:12px; align-items:flex-start; line-height:1.65;}
+    .li i{inline-size:22px; block-size:22px; border-radius:8px; background:#152045; display:inline-grid; place-items:center; color:var(--accent); font-style:normal; font-weight:900;}
+    .card .cta{margin-top:16px;}
+    .grid-2{display:grid; grid-template-columns:1fr; gap:16px;}
+    @media (min-width:560px){ .grid-2{grid-template-columns:1fr 1fr;} }
+  </style>
+
+  <!-- Meta Pixel Code (updated) -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1853633115227764');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1853633115227764&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+</head>
+<body>
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="inner container">
+      <div class="brandbar">
+        <span class="logo"><img src="./assets/nodeshort-logo.png" alt="NodeShort Logo"/></span>
+      </div>
+      <a class="cta secondary" style="margin-left:auto;" href="https://t.me/Nodeshort_VN" target="_blank" rel="noopener noreferrer">Liên hệ CSKH</a>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero container section fade-in">
+    <div class="hero-card">
+      <div class="pill">【Ưu đãi tháng 11】Xem phim · Điểm danh · Nhận thưởng 💎</div>
+      <h1 class="h1">Xem phim nhận quà – Dễ không tưởng!</h1>
+      <p class="subtitle">Nhận thưởng không mất phí.<br/>Xem phim mỗi ngày → Nhận Xu → Đổi Kim Cương → Đổi Huy hiệu nâng cấp tài khoản</p>
+      <p class="tagline">Người dùng mới: Đăng ký là có quà<br>Người dùng cũ: Điểm danh liên tục có thưởng thêm<br>⚡ Số lượng có hạn · Nhận hết sẽ dừng</p>
+      <a class="cta" href="https://t.me/Nodeshort_VN" target="_blank" rel="noopener noreferrer">Nhận quà ngay!</a>
+      <p class="subtitle" style="margin-top:8px; color:var(--gold); font-weight:700; text-align:center;">⚡ Ưu đãi có hạn · Nhận ngay kẻo hết!</p>
+    </div>
+  </header>
+
+  <!-- About / Assets -->
+  <section class="container section fade-in" id="about">
+    <div class="card">
+      <h3>Xu · Kim cương · DP Coin · Dùng để làm gì?</h3>
+      <p class="subtitle">Xem phim/điểm danh để nhận, dùng để mở khóa, đổi thưởng, nâng cấp.</p>
+      <div class="asset-list" style="display:flex; flex-direction:column; gap:16px; margin-top:12px;">
+        <div class="asset-item" style="padding:12px; border:1px solid rgba(255,255,255,.06); border-radius:12px; background:#0e1531; display:flex; gap:12px;">
+          <img src="./assets/coin.png" width="36" height="36" alt="Xu (coin)"/>
+          <div><p><b>Xu</b></p><p>Xem phim/điểm danh để nhận</p><div class="badge">Dùng để mở khoá tập phim/quay thưởng/đổi Kim cương.<br/>🔸 Ví dụ: 30.000 Xu = 1 Kim Cương</div></div>
+        </div>
+        <div class="asset-item" style="padding:12px; border:1px solid rgba(255,255,255,.06); border-radius:12px; background:#0e1531; display:flex; gap:12px;">
+          <img src="./assets/diamond.png" width="36" height="36" alt="Kim Cương"/>
+          <div><p><b>Kim cương</b></p><p>Phần thưởng cốt lõi của sự kiện</p><div class="badge">Dùng để mua VIP, sự kiện, đổi Huy hiệu.<br/>🔸 Ví dụ: 1 Kim Cương ≈ 1 USD</div></div>
+        </div>
+        <div class="asset-item" style="padding:12px; border:1px solid rgba(255,255,255,.06); border-radius:12px; background:#0e1531; display:flex; gap:12px;">
+          <img src="./assets/dp.png" width="36" height="36" alt="DP Coin"/>
+          <div><p><b>DP Coin</b></p><p>Phần thưởng hiếm, chỉ phát hành trong các sự kiện</p><div class="badge">Dùng để tham gia sự kiện cao cấp, đổi Huy hiệu hiếm, đổi Kim cương để nhận lợi nhuận (tham gia càng sớm càng có lợi)</div></div>
+        </div>
+      </div>
+      <div class="list" style="margin-top:12px;">
+        <div class="li"><i>✓</i><span>Tham gia nhóm để nhận thêm ưu đãi độc quyền!</span></div>
+        <div class="li"><i>✓</i><span>Tham gia MIỄN PHÍ 100%! Không cam kết lợi nhuận, chỉ hướng dẫn đổi thưởng.</span></div>
+      </div>
+      <a class="cta secondary" href="https://t.me/Nodeshort_VN" target="_blank" rel="noopener noreferrer">Hướng dẫn đổi vật phẩm</a>
+    </div>
+  </section>
+
+  <!-- Tiers -->
+  <section class="container section fade-in" id="tiers">
+    <div class="card">
+      <h3>🎁 Hệ thống ưu đãi 3 cấp</h3>
+      <p class="subtitle">Tham gia càng sâu, quyền lợi càng cao. Gia nhập ngay hôm nay để nâng cấp quyền hạn sự kiện tức thì!</p>
+      <div class="list" style="margin-top:12px;">
+        <div class="li"><i>⭐</i><span><b>Thành viên thường</b><br/>Xem phim/Điểm danh nhận Xu</span></div>
+        <div class="li"><i>⭐</i><span><b>Thành viên năng động</b><br/>Tham gia nhóm + Đăng bình luận 1 lần mỗi ngày để nhận thêm ưu đãi</span></div>
+        <div class="li"><i>⭐</i><span><b>Thành viên Huy hiệu</b><br/>Sở hữu Huy hiệu → Giảm giá sâu hơn → Ưu đãi lớn hơn</span></div>
+      </div>
+      <a class="cta" href="https://t.me/Nodeshort_VN" target="_blank" rel="noopener noreferrer">Xem chi tiết</a>
+    </div>
+  </section>
+
+  <!-- Badges -->
+  <section class="container section fade-in" id="badges">
+    <div class="card">
+      <h3>🔥 Huy hiệu quốc gia phổ biến (Phát hành qua Sự kiện)</h3>
+      <p class="subtitle">Mở khóa Huy hiệu = Nâng cấp quyền hạn. Huy hiệu càng hiếm, càng được săn đón; Bỏ lỡ đợt này, chưa chắc đã mở lại!</p>
+      <div class="badge-slider" aria-label="Bộ sưu tập huy hiệu">
+        <img src="./assets/badge-vn.png" alt="Huy hiệu Việt Nam"/>
+        <img src="./assets/badge-jp.png" alt="Huy hiệu Nhật Bản"/>
+        <img src="./assets/badge-kr.png" alt="Huy hiệu Hàn Quốc"/>
+        <img src="./assets/badge-us.png" alt="Huy hiệu Hoa Kỳ"/>
+        <img src="./assets/badge-uk.png" alt="Huy hiệu Vương quốc Anh"/>
+        <img src="./assets/badge-cn.png" alt="Huy hiệu Trung Quốc"/>
+      </div>
+      <a class="cta" href="https://t.me/Nodeshort_VN" target="_blank" rel="noopener noreferrer">Xem quyền lợi huy hiệu</a>
+    </div>
+  </section>
+
+  <!-- Exchange Table -->
+  <section class="container section fade-in" id="nov">
+    <div class="card">
+      <h3>Ưu đãi tháng 11 · Tỷ lệ quy đổi</h3>
+      <div class="table-wrap" role="region" aria-label="Bảng tỷ lệ quy đổi">
+        <table>
+          <thead>
+            <tr><th>Loại thành viên</th><th>Tỷ lệ quy đổi</th><th>Điều kiện tham gia</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Thành viên thường</td><td>30,000 Xu = 1 KC</td><td>Đăng ký tài khoản</td></tr>
+            <tr><td>Thành viên năng động</td><td>20,000 Xu = 1 KC</td><td>Vào nhóm & gửi 1 tin nhắn/ngày</td></tr>
+            <tr><td>Thành viên Huy hiệu</td><td>10,000 Xu = 1 KC</td><td>Sở hữu Huy hiệu sự kiện</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="subtitle" style="margin-top:10px;">👉 Cấp độ càng cao, quy đổi càng có lợi<br/>Thời gian sự kiện: 01/11/2025 - 30/11/2025</p>
+      <a class="cta" href="https://t.me/Nodeshort_VN" target="_blank" rel="noopener noreferrer">Tham gia ngay · Liên hệ CSKH</a>
+    </div>
+  </section>
+
+  <!-- Agent -->
+  <section class="container section fade-in" id="agent">
+    <div class="grid-2">
+      <div class="card">
+        <h3>🤝 Bạn muốn phát triển Kênh phim ngắn?</h3>
+        <p class="subtitle">Chúng tôi cung cấp tài nguyên – chiến lược – hoạt động.<br/>Giúp bạn xây dựng kênh ổn định và dài hạn. Cung cấp tài liệu, kinh nghiệm chạy quảng cáo, quy trình quản lý cộng đồng (SOP).</p>
+        <div class="list" style="margin-top:12px;">
+          <div class="li"><i>✓</i><span>Cùng xây dựng nội dung: Poster điện thoại, gói icon Huy hiệu / Xu / Kim cương / DP</span></div>
+          <div class="li"><i>✓</i><span>Kinh nghiệm quảng cáo: Triển khai hợp quy trên Facebook / TikTok, kèm kịch bản & lời thoại mẫu</span></div>
+          <div class="li"><i>✓</i><span>Phát triển cộng đồng: Chiến lược tăng tương tác & thu hút thành viên mới trên Telegram</span></div>
+        </div>
+        <a class="cta secondary" href="https://t.me/Nodeshort_VN" target="_blank" rel="noopener noreferrer">Nhận tài nguyên ngay</a>
+      </div>
+      <div class="card">
+        <h3>Đối tượng phù hợp</h3>
+        <div class="list" style="margin-top:12px;">
+          <div class="li"><i>★</i><span>Đã có sẵn người dùng/nhóm/fanpage về phim ngắn.</span></div>
+          <div class="li"><i>★</i><span>Người đang xây dựng cộng đồng riêng (private traffic) hoặc nhóm Telegram</span></div>
+          <div class="li"><i>★</i><span>Muốn tham gia dự án dài hạn, tìm kiếm lợi nhuận ổn định (theo cách hợp quy)</span></div>
+        </div>
+        <a class="cta" href="https://t.me/Nodeshort_VN" target="_blank" rel="noopener noreferrer">Tham gia kênh ngay</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="container section fade-in" id="faq">
+    <div class="card">
+      <h3>FAQ · Câu hỏi thường gặp</h3>
+      <div class="list">
+        <div class="li"><i>?</i><span><b>Đây có phải là sự kiện chính thức?</b><br/>Không. Đây là lời mời từ kênh cá nhân, không đại diện cho nền tảng chính thức. Phần thưởng được tính theo quy tắc thực tế của nền tảng.</span></div>
+        <div class="li"><i>?</i><span><b>Có cần nạp tiền không?</b><br/>Không. Xem phim và điểm danh là có thể nhận thưởng.</span></div>
+        <div class="li"><i>?</i><span><b>Bắt đầu như thế nào?</b><br/>Nhấn vào nút → Liên hệ CSKH → Đăng ký tài khoản → Tham gia nhóm → Nhận phúc lợi.</span></div>
+        <div class="li"><i>?</i><span><b>Có kiểm soát rủi ro không?</b><br/>Hệ thống sẽ chặn tài khoản giả, đăng ký hàng loạt, dùng script hoặc nhiều thiết bị. Người dùng thật tham gia bình thường sẽ không bị ảnh hưởng.</span></div>
+      </div>
+      <a class="cta" href="https://t.me/Nodeshort_VN" target="_blank" rel="noopener noreferrer">Bắt đầu ngay</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="container section fade-in">
+    <p class="subtitle">* Đây là trang kênh cá nhân, không đại diện cho nền tảng chính thức. Nội dung dựa vào quy tắc thực tế.</p>
+  </footer>
+
+  <!-- Sticky Dock CTA -->
+  <div class="dock">
+    <div class="dock-inner container">
+      <a class="cta" href="https://t.me/Nodeshort_VN" target="_blank" rel="noopener noreferrer">Liên hệ Telegram CSKH</a>
+    </div>
+  </div>
+
+</body>
+</html>
