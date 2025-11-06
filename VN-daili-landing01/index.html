@@ -64,22 +64,21 @@
     @media (min-width:560px){ .grid-2{grid-template-columns:1fr 1fr;} }
   </style>
 
-  <!-- Meta Pixel Code (updated) -->
+  <!-- Meta Pixel Code (去重版，使用 1853633115227764) -->
   <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1853633115227764');
-  fbq('track', 'PageView');
+  (function(){
+    var PIXEL_ID = '1853633115227764';
+    if (window._fbq_inited) return; // 去重
+    window._fbq_inited = true;
+    window.__fbq_init_count = (window.__fbq_init_count||0) + 1;
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    try { fbq('init', PIXEL_ID); fbq('track','PageView'); console.assert(window.__fbq_init_count===1,'[TEST] Pixel should init once'); } catch(e){ console.warn('[pixel]',e); }
+  })();
   </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=1853633115227764&ev=PageView&noscript=1"
-  /></noscript>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1853633115227764&ev=PageView&noscript=1"/></noscript>
   <!-- End Meta Pixel Code -->
 </head>
 <body>
@@ -89,7 +88,7 @@
       <div class="brandbar">
         <span class="logo"><img src="./assets/nodeshort-logo.png" alt="NodeShort Logo"/></span>
       </div>
-      <a class="cta secondary" style="margin-left:auto;" href="https://t.me/Nodeshort_VN" target="_blank" rel="noopener noreferrer">Liên hệ CSKH</a>
+      <a class="cta secondary js-cta" data-source="topbar_cskh" href="https://t.me/Nodeshort_VN" target="_blank" rel="noopener noreferrer">Liên hệ CSKH</a>
     </div>
   </div>
 
@@ -100,7 +99,7 @@
       <h1 class="h1">Xem phim nhận quà – Dễ không tưởng!</h1>
       <p class="subtitle">Nhận thưởng không mất phí.<br/>Xem phim mỗi ngày → Nhận Xu → Đổi Kim Cương → Đổi Huy hiệu nâng cấp tài khoản</p>
       <p class="tagline">Người dùng mới: Đăng ký là có quà<br>Người dùng cũ: Điểm danh liên tục có thưởng thêm<br>⚡ Số lượng có hạn · Nhận hết sẽ dừng</p>
-      <a class="cta" href="https://t.me/Nodeshort_VN" target="_blank" rel="noopener noreferrer">Nhận quà ngay!</a>
+      <a class="cta js-cta" data-source="hero_claim" href="https://t.me/Nodeshort_VN" target="_blank" rel="noopener noreferrer">Nhận quà ngay!</a>
       <p class="subtitle" style="margin-top:8px; color:var(--gold); font-weight:700; text-align:center;">⚡ Ưu đãi có hạn · Nhận ngay kẻo hết!</p>
     </div>
   </header>
@@ -128,7 +127,7 @@
         <div class="li"><i>✓</i><span>Tham gia nhóm để nhận thêm ưu đãi độc quyền!</span></div>
         <div class="li"><i>✓</i><span>Tham gia MIỄN PHÍ 100%! Không cam kết lợi nhuận, chỉ hướng dẫn đổi thưởng.</span></div>
       </div>
-      <a class="cta secondary" href="https://t.me/Nodeshort_VN" target="_blank" rel="noopener noreferrer">Hướng dẫn đổi vật phẩm</a>
+      <a class="cta secondary js-cta" data-source="about_guide" href="https://t.me/Nodeshort_VN" target="_blank" rel="noopener noreferrer">Hướng dẫn đổi vật phẩm</a>
     </div>
   </section>
 
@@ -142,7 +141,7 @@
         <div class="li"><i>⭐</i><span><b>Thành viên năng động</b><br/>Tham gia nhóm + Đăng bình luận 1 lần mỗi ngày để nhận thêm ưu đãi</span></div>
         <div class="li"><i>⭐</i><span><b>Thành viên Huy hiệu</b><br/>Sở hữu Huy hiệu → Giảm giá sâu hơn → Ưu đãi lớn hơn</span></div>
       </div>
-      <a class="cta" href="https://t.me/Nodeshort_VN" target="_blank" rel="noopener noreferrer">Xem chi tiết</a>
+      <a class="cta js-cta" data-source="tiers_detail" href="https://t.me/Nodeshort_VN" target="_blank" rel="noopener noreferrer">Xem chi tiết</a>
     </div>
   </section>
 
@@ -159,7 +158,7 @@
         <img src="./assets/badge-uk.png" alt="Huy hiệu Vương quốc Anh"/>
         <img src="./assets/badge-cn.png" alt="Huy hiệu Trung Quốc"/>
       </div>
-      <a class="cta" href="https://t.me/Nodeshort_VN" target="_blank" rel="noopener noreferrer">Xem quyền lợi huy hiệu</a>
+      <a class="cta js-cta" data-source="badges_benefits" href="https://t.me/Nodeshort_VN" target="_blank" rel="noopener noreferrer">Xem quyền lợi huy hiệu</a>
     </div>
   </section>
 
@@ -180,7 +179,7 @@
         </table>
       </div>
       <p class="subtitle" style="margin-top:10px;">👉 Cấp độ càng cao, quy đổi càng có lợi<br/>Thời gian sự kiện: 01/11/2025 - 30/11/2025</p>
-      <a class="cta" href="https://t.me/Nodeshort_VN" target="_blank" rel="noopener noreferrer">Tham gia ngay · Liên hệ CSKH</a>
+      <a class="cta js-cta" data-source="table_join" href="https://t.me/Nodeshort_VN" target="_blank" rel="noopener noreferrer">Tham gia ngay · Liên hệ CSKH</a>
     </div>
   </section>
 
@@ -195,7 +194,7 @@
           <div class="li"><i>✓</i><span>Kinh nghiệm quảng cáo: Triển khai hợp quy trên Facebook / TikTok, kèm kịch bản & lời thoại mẫu</span></div>
           <div class="li"><i>✓</i><span>Phát triển cộng đồng: Chiến lược tăng tương tác & thu hút thành viên mới trên Telegram</span></div>
         </div>
-        <a class="cta secondary" href="https://t.me/Nodeshort_VN" target="_blank" rel="noopener noreferrer">Nhận tài nguyên ngay</a>
+        <a class="cta secondary js-cta" data-source="agent_assets" href="https://t.me/Nodeshort_VN" target="_blank" rel="noopener noreferrer">Nhận tài nguyên ngay</a>
       </div>
       <div class="card">
         <h3>Đối tượng phù hợp</h3>
@@ -204,7 +203,7 @@
           <div class="li"><i>★</i><span>Người đang xây dựng cộng đồng riêng (private traffic) hoặc nhóm Telegram</span></div>
           <div class="li"><i>★</i><span>Muốn tham gia dự án dài hạn, tìm kiếm lợi nhuận ổn định (theo cách hợp quy)</span></div>
         </div>
-        <a class="cta" href="https://t.me/Nodeshort_VN" target="_blank" rel="noopener noreferrer">Tham gia kênh ngay</a>
+        <a class="cta js-cta" data-source="agent_join" href="https://t.me/Nodeshort_VN" target="_blank" rel="noopener noreferrer">Tham gia kênh ngay</a>
       </div>
     </div>
   </section>
@@ -217,9 +216,9 @@
         <div class="li"><i>?</i><span><b>Đây có phải là sự kiện chính thức?</b><br/>Không. Đây là lời mời từ kênh cá nhân, không đại diện cho nền tảng chính thức. Phần thưởng được tính theo quy tắc thực tế của nền tảng.</span></div>
         <div class="li"><i>?</i><span><b>Có cần nạp tiền không?</b><br/>Không. Xem phim và điểm danh là có thể nhận thưởng.</span></div>
         <div class="li"><i>?</i><span><b>Bắt đầu như thế nào?</b><br/>Nhấn vào nút → Liên hệ CSKH → Đăng ký tài khoản → Tham gia nhóm → Nhận phúc lợi.</span></div>
-        <div class="li"><i>?</i><span><b>Có kiểm soát rủi ro không?</b><br/>Hệ thống sẽ chặn tài khoản giả, đăng ký hàng loạt, dùng script hoặc nhiều thiết bị. Người dùng thật tham gia bình thường sẽ không bị ảnh hưởng.</span></div>
+        <div class="li"><i>?</i><span><b>Có kiểm soát rủi ro không?</b><br/>Hệ thống sẽ chặn tài khoản giả, đăng ký hàng loạt, dùng script hoặc nhiều thiết bị. Người dùng thật tham gia bình thường sẽ không bị ảnh hưởng。</span></div>
       </div>
-      <a class="cta" href="https://t.me/Nodeshort_VN" target="_blank" rel="noopener noreferrer">Bắt đầu ngay</a>
+      <a class="cta js-cta" data-source="faq_start" href="https://t.me/Nodeshort_VN" target="_blank" rel="noopener noreferrer">Bắt đầu ngay</a>
     </div>
   </section>
 
@@ -231,9 +230,21 @@
   <!-- Sticky Dock CTA -->
   <div class="dock">
     <div class="dock-inner container">
-      <a class="cta" href="https://t.me/Nodeshort_VN" target="_blank" rel="noopener noreferrer">Liên hệ Telegram CSKH</a>
+      <a class="cta js-cta" data-source="dock_cskh" href="https://t.me/Nodeshort_VN" target="_blank" rel="noopener noreferrer">Liên hệ Telegram CSKH</a>
     </div>
   </div>
 
+  <script>
+    // 绑定所有 CTA 的打点：Contact + 自定义 ClickCTA
+    (function(){
+      function sendPixel(source){
+        try{ if(window.fbq){ fbq('track','Contact',{channel:'telegram', from:'agent', source:source||'unknown'}); fbq('trackCustom','ClickCTA',{from:'agent', source:source||'unknown'});} }catch(e){}
+      }
+      var ctas=document.querySelectorAll('.js-cta');
+      ctas.forEach(function(a){ a.addEventListener('click', function(){ sendPixel(a.getAttribute('data-source')); }); });
+      // 简单自检（控制台）
+      console.assert(document.querySelectorAll('.js-cta').length>=1,'[TEST] CTA buttons exist');
+    })();
+  </script>
 </body>
 </html>
