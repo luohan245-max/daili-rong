@@ -13,15 +13,16 @@
   <!-- Open Graph / Share -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="NodeShort • Sự kiện xem phim tháng 11" />
-  <meta property="og:description" content="Xem phim • điểm danh • nhận phần thưởng · Liên hệ Telegram" />
+  <meta property="og:description" content="Xem phim • điểm danh • nhận phần thưởng · Liên hệ Zalo" />
   <meta property="og:image" content="./assets/nodeshort-cover.png" />
   <link rel="preload" as="image" href="./assets/nodeshort-logo.png" />
   <meta property="og:url" content="https://yourdomain.com/" />
   <meta name="robots" content="noindex, nofollow" />
   <link rel="canonical" href="https://yourdomain.com/" />
 
-  <link rel="dns-prefetch" href="//t.me" />
-  <link rel="preconnect" href="https://t.me" crossorigin />
+  <!-- DNS 预连接：替换为 Zalo -->
+  <link rel="dns-prefetch" href="//zalo.me" />
+  <link rel="preconnect" href="https://zalo.me" crossorigin />
 
   <style>
     :root{--bg:#0b1020;--card:#141a2e;--text:#e9ecf1;--muted:#b7beca;--brand:#5b8cff;--accent:#7ae3ff;--gold:#f6c453;--success:#24d07a;--danger:#ff6868;--shadow:0 12px 30px rgba(0,0,0,.35);--radius:16px;--radius-lg:22px;--maxw:880px;}
@@ -147,7 +148,7 @@
   <section class="container section fade-in" id="badges">
     <div class="card">
       <h3>🔥 Huy hiệu quốc gia phổ biến (Phát hành qua Sự kiện)</h3>
-    <p class="subtitle">Mở khóa Huy hiệu = Nâng cấp quyền hạn. Huy hiệu càng hiếm, càng được săn đón; Bỏ lỡ đợt này, chưa chắc đã mở lại!</p>
+      <p class="subtitle">Mở khóa Huy hiệu = Nâng cấp quyền hạn. Huy hiệu càng hiếm, càng được săn đón; Bỏ lỡ đợt này, chưa chắc đã mở lại!</p>
       <div class="badge-slider" aria-label="Bộ sưu tập huy hiệu">
         <img src="./assets/badge-vn.png" alt="Huy hiệu Việt Nam"/>
         <img src="./assets/badge-jp.png" alt="Huy hiệu Nhật Bản"/>
@@ -190,7 +191,7 @@
         <div class="list" style="margin-top:12px;">
           <div class="li"><i>✓</i><span>Cùng xây dựng nội dung: Poster điện thoại, gói icon Huy hiệu / Xu / Kim cương / DP</span></div>
           <div class="li"><i>✓</i><span>Kinh nghiệm quảng cáo: Triển khai hợp quy trên Facebook / TikTok, kèm kịch bản & lời thoại mẫu</span></div>
-          <div class="li"><i>✓</i><span>Phát triển cộng đồng: Chiến lược tăng tương tác & thu hút thành viên mới trên Telegram</span></div>
+          <div class="li"><i>✓</i><span>Phát triển cộng đồng: Chiến lược tăng tương tác & thu hút thành viên mới trên Zalo</span></div>
         </div>
         <a class="cta secondary js-cta" data-source="agent_assets" href="https://zalo.me/g/neypmn605" target="_blank" rel="noopener noreferrer">Nhận tài nguyên ngay</a>
       </div>
@@ -198,7 +199,7 @@
         <h3>Đối tượng phù hợp</h3>
         <div class="list" style="margin-top:12px;">
           <div class="li"><i>★</i><span>Đã có sẵn người dùng/nhóm/fanpage về phim ngắn.</span></div>
-          <div class="li"><i>★</i><span>Người đang xây dựng cộng đồng riêng (private traffic) hoặc nhóm Telegram</span></div>
+          <div class="li"><i>★</i><span>Người đang xây dựng cộng đồng riêng (private traffic) hoặc nhóm Zalo</span></div>
           <div class="li"><i>★</i><span>Muốn tham gia dự án dài hạn, tìm kiếm lợi nhuận ổn định (theo cách hợp quy)</span></div>
         </div>
         <a class="cta js-cta" data-source="agent_join" href="https://zalo.me/g/neypmn605" target="_blank" rel="noopener noreferrer">Tham gia kênh ngay</a>
@@ -228,7 +229,7 @@
   <!-- Sticky Dock CTA -->
   <div class="dock">
     <div class="dock-inner container">
-      <a class="cta js-cta" data-source="dock_cskh" href="https://zalo.me/g/neypmn605" target="_blank" rel="noopener noreferrer">Liên hệ Telegram CSKH</a>
+      <a class="cta js-cta" data-source="dock_cskh" href="https://zalo.me/g/neypmn605" target="_blank" rel="noopener noreferrer">Liên hệ Zalo CSKH</a>
     </div>
   </div>
 
@@ -236,10 +237,17 @@
     // 统一 CTA 打点：Contact + 自定义 ClickCTA（from=agent）
     (function(){
       function sendPixel(source){
-        try{ if(window.fbq){ fbq('track','Contact',{channel:'telegram', from:'agent', source:source||'unknown'}); fbq('trackCustom','ClickCTA',{from:'agent', source:source||'unknown'});} }catch(e){}
+        try{
+          if(window.fbq){
+            fbq('track','Contact',{channel:'zalo', from:'agent', source:source||'unknown'});
+            fbq('trackCustom','ClickCTA',{from:'agent', source:source||'unknown'});
+          }
+        }catch(e){}
       }
       var ctas=document.querySelectorAll('.js-cta');
-      ctas.forEach(function(a){ a.addEventListener('click', function(){ sendPixel(a.getAttribute('data-source')); }); });
+      ctas.forEach(function(a){ a.addEventListener('click', function(){
+        sendPixel(a.getAttribute('data-source'));
+      }); });
       // 自检
       console.assert(document.querySelectorAll('.js-cta').length>=1,'[TEST] CTA buttons exist');
     })();
