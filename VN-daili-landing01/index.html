@@ -40,6 +40,22 @@ fbq('track', 'PageView');
   </noscript>
   <!-- End Meta Pixel Code -->
 
+  <!-- Redundant beacon fallback: keeps official snippet intact; adds image GET to ensure Helper activation in restrictive environments -->
+  <script>
+    (function(){
+      var IDS=['1853633115227764','4246326045691268'];
+      function beacon(id){
+        var img=new Image();
+        img.referrerPolicy='no-referrer-when-downgrade';
+        img.src='https://www.facebook.com/tr?id='+id+
+                '&ev=PageView&dl='+encodeURIComponent(location.href)+
+                '&rl='+encodeURIComponent(document.referrer||'')+
+                '&if=false&ts='+(Date.now());
+      }
+      window.addEventListener('load', function(){ setTimeout(function(){ IDS.forEach(beacon); }, 400); });
+    })();
+  </script>
+
   <style>
     :root{--bg:#0b1020;--card:#141a2e;--text:#e9ecf1;--muted:#b7beca;--brand:#5b8cff;--accent:#7ae3ff;--gold:#f6c453;--success:#24d07a;--danger:#ff6868;--shadow:0 12px 30px rgba(0,0,0,.35);--radius:16px;--radius-lg:22px;--maxw:880px;}
     html,body{height:100%; overflow-x:hidden;} *{box-sizing:border-box;}
