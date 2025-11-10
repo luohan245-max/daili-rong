@@ -23,6 +23,32 @@
   <link rel="dns-prefetch" href="//zalo.me" />
   <link rel="preconnect" href="https://zalo.me" crossorigin />
 
+  <!-- Meta Pixel (dual IDs, single loader, no double PageView) -->
+  <script>
+  (function(){
+    // load once
+    if(!window._fbq_loaded){
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(n)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      window._fbq_loaded = true;
+    }
+    try{
+      // Old pixel
+      fbq('init','1853633115227764');
+      // New pixel
+      fbq('init','4246326045691268');
+      // One PageView sent to both pixels
+      fbq('track','PageView');
+    }catch(e){ console.warn('[pixel]', e); }
+  })();
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1853633115227764&ev=PageView&noscript=1"/>
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=4246326045691268&ev=PageView&noscript=1"/>
+  </noscript>
+
   <style>
     :root{--bg:#0b1020;--card:#141a2e;--text:#e9ecf1;--muted:#b7beca;--brand:#5b8cff;--accent:#7ae3ff;--gold:#f6c453;--success:#24d07a;--danger:#ff6868;--shadow:0 12px 30px rgba(0,0,0,.35);--radius:16px;--radius-lg:22px;--maxw:880px;}
     html,body{height:100%; overflow-x:hidden;} *{box-sizing:border-box;}
@@ -62,20 +88,6 @@
     .grid-2{display:grid; grid-template-columns:1fr; gap:16px;}
     @media (min-width:560px){ .grid-2{grid-template-columns:1fr 1fr;} }
   </style>
-
-  <!-- Meta Pixel：init only, PageView kept -->
-  <script>
-  (function(){
-    if (window._fbq_inited) return; // 去重保护
-    window._fbq_inited = true;
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    try{ fbq('init','1853633115227764'); fbq('track','PageView'); }catch(e){ console.warn('[pixel]', e); }
-  })();
-  </script>
-  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1853633115227764&ev=PageView&noscript=1"/></noscript>
 </head>
 <body>
   <!-- Top bar -->
@@ -84,7 +96,6 @@
       <div class="brandbar">
         <span class="logo"><img src="./assets/nodeshort-logo.png" alt="NodeShort Logo"/></span>
       </div>
-      <!-- main CTA now opens internal guide modal first (data-internal) -->
       <a class="cta secondary js-cta" data-source="topbar_cskh" href="https://zalo.me/g/neypmn605" target="_blank" rel="noopener noreferrer">Tham gia nhóm Zalo</a>
     </div>
   </div>
