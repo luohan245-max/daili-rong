@@ -88,6 +88,28 @@
     .grid-2{display:grid; grid-template-columns:1fr; gap:16px;}
     @media (min-width:560px){ .grid-2{grid-template-columns:1fr 1fr;} }
   </style>
+
+  <!-- Dual-pixel PageView late-fire & dedupe patch -->
+  <script>
+  (function () {
+    if (window.__ns_fired_pv) return; // dedupe
+    window.__ns_fired_pv = true;
+    function firePV() {
+      try {
+        if (typeof fbq === 'function') {
+          var eid = 'ns_pv_' + Date.now();
+          fbq('track', 'PageView', {}, { eventID: eid });
+          console.debug('[pixel] PageView sent', eid);
+        }
+      } catch (e) { console.warn('[pixel] PV error', e); }
+    }
+    if (document.readyState === 'complete') {
+      setTimeout(firePV, 0);
+    } else {
+      window.addEventListener('load', function(){ setTimeout(firePV, 0); });
+    }
+  })();
+  </script>
 </head>
 <body>
   <!-- Top bar -->
