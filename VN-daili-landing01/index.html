@@ -37,10 +37,8 @@
     try{
       // Old pixel
       fbq('init','1853633115227764');
-      // New pixel
       fbq('init','4246326045691268');
-      // One PageView sent to both pixels
-      fbq('track','PageView');
+      // PageView moved to late-fire patch below for both pixels
     }catch(e){ console.warn('[pixel]', e); }
   })();
   </script>
@@ -97,9 +95,11 @@
     function firePV() {
       try {
         if (typeof fbq === 'function') {
-          var eid = 'ns_pv_' + Date.now();
-          fbq('track', 'PageView', {}, { eventID: eid });
-          console.debug('[pixel] PageView sent', eid);
+          var ts = Date.now();
+          try { fbq('consent', 'grant'); } catch(_){}
+          fbq('trackSingle','1853633115227764','PageView',{}, { eventID: 'ns_pv_a_' + ts });
+          fbq('trackSingle','4246326045691268','PageView',{}, { eventID: 'ns_pv_b_' + ts });
+          console.debug('[pixel] PageView sent to both pixels', ts);
         }
       } catch (e) { console.warn('[pixel] PV error', e); }
     }
