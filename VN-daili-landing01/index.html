@@ -16,9 +16,9 @@
   <meta property="og:description" content="Xem phim • điểm danh • hướng dẫn chính thức · Xem hợp pháp" />
   <meta property="og:image" content="./assets/nodeshort-cover.png" />
   <link rel="preload" as="image" href="./assets/nodeshort-logo.png" />
-  <meta property="og:url" content="https://yourdomain.com/" />
-  <meta name="robots" content="noindex, nofollow" />
-  <link rel="canonical" href="https://yourdomain.com/" />
+  <meta property="og:url" content="https://nodeshort-proxy01.vercel.app/" id="ogUrl" />
+  <meta name="robots" content="index, follow" id="robotsMeta" />
+  <link rel="canonical" href="https://nodeshort-proxy01.vercel.app/" id="canonicalLink" />
 
   <link rel="dns-prefetch" href="//zalo.me" />
   <link rel="preconnect" href="https://zalo.me" crossorigin />
@@ -95,6 +95,13 @@ fbq('track', 'PageView');
     .grid-2{display:grid; grid-template-columns:1fr; gap:16px;}
     @media (min-width:560px){ .grid-2{grid-template-columns:1fr 1fr;} }
   </style>
+  <script>
+    // Ensure canonical/og reflect current URL (helps EST previews)
+    (function(){
+      var u=document.getElementById('ogUrl'); if(u) u.setAttribute('content', location.href);
+      var c=document.getElementById('canonicalLink'); if(c) c.setAttribute('href', location.href);
+    })();
+  </script>
 </head>
 <body>
   <!-- Top bar -->
@@ -280,8 +287,27 @@ fbq('track', 'PageView');
       document.getElementById('modalClose').addEventListener('click', hideModal);
       document.getElementById('modalContact').addEventListener('click', function(){ sendCustom('ClickCTA',{from:'modal_zalo'}); });
       var ctas=document.querySelectorAll('.js-cta');
-      ctas.forEach(function(a){ a.addEventListener('click', function(ev){ var src=a.getAttribute('data-source')||'unknown'; sendCustom('ClickCTA',{from:'agent', source:src}); if(a.dataset.internal==='guide'){ ev.preventDefault(); showModal(); } }); });
-      console.assert(document.querySelectorAll('.js-cta').length>=1,'[TEST] CTA buttons exist');
+      function beaconTrack(id, ev, params){
+        var base='https://www.facebook.com/tr?id='+id+'&ev='+encodeURIComponent(ev);
+        var q=Object.keys(params||{}).map(function(k){return '&'+encodeURIComponent(k)+'='+encodeURIComponent(params[k]);}).join('');
+        var url=base+q+'&dl='+encodeURIComponent(location.href)+'&rl='+encodeURIComponent(document.referrer||'')+'&if=false&ts='+(Date.now());
+        if (navigator.sendBeacon){ try{ navigator.sendBeacon(url); }catch(_){} }
+        else { var img=new Image(); img.referrerPolicy='no-referrer-when-downgrade'; img.src=url; }
+      }
+      function fireClickEvents(src, href){
+        if (window.fbq){ fbq('track','Lead',{source:src, href:href}); fbq('trackCustom','ClickCTA',{source:src, href:href}); }
+        ['1853633115227764','4246326045691268'].forEach(function(id){ beaconTrack(id,'Lead',{source:src}); });
+      }
+      ctas.forEach(function(a){
+        a.addEventListener('click', function(ev){
+          var src=a.getAttribute('data-source')||'unknown';
+          var href=a.href;
+          fireClickEvents(src, href);
+          if (a.dataset.internal==='guide'){ ev.preventDefault(); showModal(); return; }
+          if (a.target !== '_blank') { ev.preventDefault(); setTimeout(function(){ window.location.href = href; }, 220); }
+        });
+      });
+      console.assert(document.querySelectorAll('.js-cta').length>=1,'[TEST] CTA buttons exist');(document.querySelectorAll('.js-cta').length>=1,'[TEST] CTA buttons exist');
     })();
   </script>
 
