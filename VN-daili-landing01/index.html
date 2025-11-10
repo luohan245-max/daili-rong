@@ -130,6 +130,25 @@
     }
   })();
   </script>
+  
+  <!-- Meta Event Setup Tool compatibility shim -->
+  <script>
+    (function(){
+      // 仅在 Meta 事件设置工具环境中，补发标准 PageView，保证工具可启用
+      var isEST = /business\.facebook\.com/.test(document.referrer) || /[?&](est|fbp_est|setupevents)=1/i.test(location.search);
+      if (!isEST) return;
+      if (window.__ns_est_pv) return; window.__ns_est_pv = true;
+      function fire(){
+        try{
+          if (typeof fbq === 'function') {
+            fbq('track','PageView',{}, { eventID: 'est_pv_'+Date.now() });
+            console.debug('[pixel][EST] standard PageView fired for Event Setup Tool');
+          }
+        }catch(e){console.warn('[pixel][EST] fail', e)}
+      }
+      if (document.readyState === 'complete') setTimeout(fire, 0); else window.addEventListener('load', function(){ setTimeout(fire,0);});
+    })();
+  </script>
 </head>
 <body>
   <!-- Top bar -->
