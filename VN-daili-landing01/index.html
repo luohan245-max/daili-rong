@@ -23,19 +23,20 @@
   <link rel="dns-prefetch" href="//zalo.me" />
   <link rel="preconnect" href="https://zalo.me" crossorigin />
 
-  <!-- Meta Pixel Base (EST-friendly)  放在 <head> 顶部，便于事件设置工具识别 -->
+  <!-- Meta Pixel • Dual IDs, standard load -->
   <script>
-  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(n)};if(!f._fbq)f._fbq=n;
-  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-  // 双像素直接 init，保证 EST 能检测到像素代码
-  try{ fbq('init','1853633115227764'); fbq('init','4246326045691268'); }catch(_){}
-  // 仅在事件设置工具访问或带 ?est=1 / ?setupevents=1 时，发送标准 PageView 以“激活”工具
-  (function(){
-    var isEST = /business\.facebook\.com/.test(document.referrer) || /[?&](est|setupevents)=1/i.test(location.search);
-    if(isEST){ window.__ns_est_mode = true; try{ fbq('track','PageView',{}, {eventID:'est_pv_'+Date.now()}); }catch(_){} }
-  })();
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(n)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    // init both pixels
+    try { fbq('init','1853633115227764'); fbq('init','4246326045691268'); } catch(e) { console.warn('[pixel init]', e); }
+    // fire PageView once on load for BOTH pixels
+    (function(){
+      if (window.__ns_pv_sent) return; window.__ns_pv_sent = true;
+      function fire(){ try { fbq('track','PageView', {}, {eventID:'pv_'+Date.now()}); } catch(e){} }
+      if (document.readyState === 'complete') setTimeout(fire,0); else window.addEventListener('load', function(){ setTimeout(fire,0); });
+    })();
   </script>
 
   <!-- Meta Pixel (dual IDs, single loader, no double PageView) -->
@@ -102,67 +103,8 @@
     @media (min-width:560px){ .grid-2{grid-template-columns:1fr 1fr;} }
   </style>
 
-  <!-- Dual-pixel PageView late-fire & dedupe patch -->
-  <script>
-  (function () {
-    if (window.__ns_fired_pv) return; // dedupe
-    window.__ns_fired_pv = true;
-
-    var PIXELS = ['1853633115227764','4246326045691268'];
-
-    function beacon(id){
-      try {
-        var url = 'https://www.facebook.com/tr?id='+id+'&ev=PageView&dl='+encodeURIComponent(location.href)+'&rl='+encodeURIComponent(document.referrer||'')+'&if=false&ts='+(Date.now());
-        var img = new Image();
-        img.referrerPolicy = 'no-referrer-when-downgrade';
-        img.src = url;
-        console.debug('[pixel] beacon sent', id);
-      } catch(e){ console.warn('[pixel] beacon error', id, e); }
-    }
-
-    function firePV() {
-      try {
-        if (window.__ns_est_mode) { console.debug('[pixel] skip late-fire in EST mode'); return; }
-        try { fbq('consent','grant'); } catch(_){ }
-        var ts = Date.now();
-        if (typeof fbq === 'function') {
-          fbq('trackSingle','1853633115227764','PageView',{}, { eventID: 'ns_pv_a_' + ts });
-          fbq('trackSingle','4246326045691268','PageView',{}, { eventID: 'ns_pv_b_' + ts });
-          console.debug('[pixel] fbq PageView sent to both pixels', ts);
-        }
-        // 冗余 image beacon（非 EST 模式）
-        try{
-          ['1853633115227764','4246326045691268'].forEach(function(id){
-            var url = 'https://www.facebook.com/tr?id='+id+'&ev=PageView&dl='+encodeURIComponent(location.href)+'&rl='+encodeURIComponent(document.referrer||'')+'&if=false&ts='+(Date.now());
-            var img = new Image();
-            img.referrerPolicy = 'no-referrer-when-downgrade';
-            img.src = url;
-            console.debug('[pixel] beacon sent', id);
-          });
-        }catch(_){ }
-      } catch (e) { console.warn('[pixel] PV error', e); }
-    } catch(_){ }
-        // 先用 fbq trackSingle
-        if (typeof fbq === 'function') {
-          var ts = Date.now();
-          PIXELS.forEach(function(id, idx){
-            try { fbq('trackSingle', id, 'PageView', {}, { eventID: 'ns_pv_'+idx+'_'+ts }); } catch(_){ }
-          });
-          console.debug('[pixel] fbq PageView sent to', PIXELS);
-        }
-        // 再冗余一份 image beacon，确保 Helper/网络拦截下仍能激活
-        PIXELS.forEach(beacon);
-      } catch (e) { console.warn('[pixel] PV error', e); }
-    }
-
-    // 在 window load 后补发，确保脚本就绪
-    if (document.readyState === 'complete') {
-      setTimeout(firePV, 50);
-    } else {
-      window.addEventListener('load', function(){ setTimeout(firePV, 50); });
-    }
-  })();
-  </script>
+  <!-- Dual-pixel PageView late-fire & dedupe patch: removed in favor of standard PageView to ensure Helper activation -->
+  <script>/* no-op */</script>
   
   <!-- Meta Event Setup Tool compatibility shim -->
   <script>
