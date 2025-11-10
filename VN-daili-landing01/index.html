@@ -92,21 +92,41 @@
   (function () {
     if (window.__ns_fired_pv) return; // dedupe
     window.__ns_fired_pv = true;
+
+    var PIXELS = ['1853633115227764','4246326045691268'];
+
+    function beacon(id){
+      try {
+        var url = 'https://www.facebook.com/tr?id='+id+'&ev=PageView&dl='+encodeURIComponent(location.href)+'&rl='+encodeURIComponent(document.referrer||'')+'&if=false&ts='+(Date.now());
+        var img = new Image();
+        img.referrerPolicy = 'no-referrer-when-downgrade';
+        img.src = url;
+        console.debug('[pixel] beacon sent', id);
+      } catch(e){ console.warn('[pixel] beacon error', id, e); }
+    }
+
     function firePV() {
       try {
+        // 给出同意，降低隐私扩展误判
+        try { fbq('consent','grant'); } catch(_){ }
+        // 先用 fbq trackSingle
         if (typeof fbq === 'function') {
           var ts = Date.now();
-          try { fbq('consent', 'grant'); } catch(_){}
-          fbq('trackSingle','1853633115227764','PageView',{}, { eventID: 'ns_pv_a_' + ts });
-          fbq('trackSingle','4246326045691268','PageView',{}, { eventID: 'ns_pv_b_' + ts });
-          console.debug('[pixel] PageView sent to both pixels', ts);
+          PIXELS.forEach(function(id, idx){
+            try { fbq('trackSingle', id, 'PageView', {}, { eventID: 'ns_pv_'+idx+'_'+ts }); } catch(_){ }
+          });
+          console.debug('[pixel] fbq PageView sent to', PIXELS);
         }
+        // 再冗余一份 image beacon，确保 Helper/网络拦截下仍能激活
+        PIXELS.forEach(beacon);
       } catch (e) { console.warn('[pixel] PV error', e); }
     }
+
+    // 在 window load 后补发，确保脚本就绪
     if (document.readyState === 'complete') {
-      setTimeout(firePV, 0);
+      setTimeout(firePV, 50);
     } else {
-      window.addEventListener('load', function(){ setTimeout(firePV, 0); });
+      window.addEventListener('load', function(){ setTimeout(firePV, 50); });
     }
   })();
   </script>
