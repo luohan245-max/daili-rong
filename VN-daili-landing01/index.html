@@ -23,45 +23,22 @@
   <link rel="dns-prefetch" href="//zalo.me" />
   <link rel="preconnect" href="https://zalo.me" crossorigin />
 
-  <!-- Meta Pixel • Dual IDs, standard load -->
+  <!-- Meta Pixel Code (minimal, official) -->
   <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(n)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    // init both pixels
-    try { fbq('init','1853633115227764'); fbq('init','4246326045691268'); } catch(e) { console.warn('[pixel init]', e); }
-    // fire PageView once on load for BOTH pixels
-    (function(){
-      if (window.__ns_pv_sent) return; window.__ns_pv_sent = true;
-      function fire(){ try { fbq('track','PageView', {}, {eventID:'pv_'+Date.now()}); } catch(e){} }
-      if (document.readyState === 'complete') setTimeout(fire,0); else window.addEventListener('load', function(){ setTimeout(fire,0); });
-    })();
-  </script>
-
-  <!-- Meta Pixel (dual IDs, single loader, no double PageView) -->
-  <script>
-  (function(){
-    // load once
-    if(!window._fbq_loaded){
-      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(n)};if(!f._fbq)f._fbq=n;
-      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-      window._fbq_loaded = true;
-    }
-    try{
-      // Old pixel
-      fbq('init','1853633115227764');
-      fbq('init','4246326045691268');
-      // PageView moved to late-fire patch below for both pixels
-    }catch(e){ console.warn('[pixel]', e); }
-  })();
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+ n.callMethod.apply(n,arguments):n.queue.push(n)};if(!f._fbq)f._fbq=n;
+ n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+ t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script',
+ 'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1853633115227764');
+fbq('init', '4246326045691268');
+fbq('track', 'PageView');
   </script>
   <noscript>
     <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1853633115227764&ev=PageView&noscript=1"/>
     <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=4246326045691268&ev=PageView&noscript=1"/>
   </noscript>
+  <!-- End Meta Pixel Code -->
 
   <style>
     :root{--bg:#0b1020;--card:#141a2e;--text:#e9ecf1;--muted:#b7beca;--brand:#5b8cff;--accent:#7ae3ff;--gold:#f6c453;--success:#24d07a;--danger:#ff6868;--shadow:0 12px 30px rgba(0,0,0,.35);--radius:16px;--radius-lg:22px;--maxw:880px;}
@@ -102,28 +79,6 @@
     .grid-2{display:grid; grid-template-columns:1fr; gap:16px;}
     @media (min-width:560px){ .grid-2{grid-template-columns:1fr 1fr;} }
   </style>
-
-  <!-- Dual-pixel PageView late-fire & dedupe patch: removed in favor of standard PageView to ensure Helper activation -->
-  <script>/* no-op */</script>
-  
-  <!-- Meta Event Setup Tool compatibility shim -->
-  <script>
-    (function(){
-      // 仅在 Meta 事件设置工具环境中，补发标准 PageView，保证工具可启用
-      var isEST = /business\.facebook\.com/.test(document.referrer) || /[?&](est|fbp_est|setupevents)=1/i.test(location.search);
-      if (!isEST) return;
-      if (window.__ns_est_pv) return; window.__ns_est_pv = true;
-      function fire(){
-        try{
-          if (typeof fbq === 'function') {
-            fbq('track','PageView',{}, { eventID: 'est_pv_'+Date.now() });
-            console.debug('[pixel][EST] standard PageView fired for Event Setup Tool');
-          }
-        }catch(e){console.warn('[pixel][EST] fail', e)}
-      }
-      if (document.readyState === 'complete') setTimeout(fire, 0); else window.addEventListener('load', function(){ setTimeout(fire,0);});
-    })();
-  </script>
 </head>
 <body>
   <!-- Top bar -->
@@ -301,9 +256,9 @@
   </div>
 
   <script>
-    // CTA behavior + safer pixel mapping
+    // CTA behavior (no try/catch to avoid syntax issues)
     (function(){
-      function sendCustom(evt, data){ try{ if(window.fbq){ fbq('trackCustom',evt,data||{}); } }catch(e){} }
+      function sendCustom(evt, data){ if (window.fbq) { fbq('trackCustom', evt, data||{}); } }
       function showModal(){ document.getElementById('guideModal').style.display='flex'; sendCustom('ViewContent',{from:'modal_open'}); }
       function hideModal(){ document.getElementById('guideModal').style.display='none'; }
       document.getElementById('modalClose').addEventListener('click', hideModal);
