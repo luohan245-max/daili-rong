@@ -1,25 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-
-  <!-- Meta Pixel Code -->
-  <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '2285968961850373');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=2285968961850373&ev=PageView&noscript=1"
-  /></noscript>
-  <!-- End Meta Pixel Code -->
-
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -28,6 +9,32 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>NodeShort • Trang thông tin dự án</title>
+
+  <!-- Unified Meta Pixel Code (3 pixels) -->
+  <script>
+    !function(f,b,e,v,n,t,s){
+      if(f.fbq)return; n=f.fbq=function(){ n.callMethod ?
+        n.callMethod.apply(n,arguments) : n.queue.push(arguments) };
+      if(!f._fbq)f._fbq=n; n.push=n; n.loaded=!0; n.version='2.0';
+      n.queue=[]; t=b.createElement(e); t.async=!0;
+      t.src=v; s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)
+    }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+    // 初始化三颗像素
+    fbq('init', '2285968961850373');
+    fbq('init', '4246326045691268');
+    fbq('init', '1853633115227764');
+
+    // 统一 PageView 事件
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2285968961850373&ev=PageView&noscript=1" />
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=4246326045691268&ev=PageView&noscript=1" />
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1853633115227764&ev=PageView&noscript=1" />
+  </noscript>
+  <!-- End Unified Meta Pixel Code -->
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="NodeShort • Dự án nội dung" />
@@ -93,40 +100,6 @@
       if(c) c.setAttribute('href', location.href);
     })();
   </script>
-  <!-- Meta Pixel Code (additional) -->
-  <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '4246326045691268');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=4246326045691268&ev=PageView&noscript=1"/></noscript>
-  <!-- End Meta Pixel Code (additional) -->
-
-  <!-- Meta Pixel Code (additional 1853633115227764) -->
-  <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1853633115227764');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=1853633115227764&ev=PageView&noscript=1"/></noscript>
-  <!-- End Meta Pixel Code (additional 1853633115227764) -->
-
 </head>
 <body>
   <div class="topbar">
@@ -168,6 +141,17 @@
     btns.forEach(function(btn){
       btn.addEventListener('click', function(){
         if(window.fbq){ fbq('track', 'Lead'); }
+      });
+    });
+  });
+</script>
+<script>
+  // Track Lead for all links
+  document.addEventListener('DOMContentLoaded', function() {
+    var links = document.querySelectorAll('a[href]');
+    links.forEach(function(a){
+      a.addEventListener('click', function(){
+        if (window.fbq) fbq('track','AddToCart');
       });
     });
   });
