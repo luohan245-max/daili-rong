@@ -1,6 +1,25 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '2285968961850373');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=2285968961850373&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -8,308 +27,116 @@
   <meta name="theme-color" content="#0b1020" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <title>NodeShort • Sự kiện xem phim tháng 11</title>
+  <title>NodeShort • Trang thông tin dự án</title>
 
-  <!-- Open Graph / Share -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="NodeShort • Sự kiện xem phim tháng 11" />
-  <meta property="og:description" content="Xem phim • điểm danh • hướng dẫn chính thức · Xem hợp pháp" />
+  <meta property="og:title" content="NodeShort • Dự án nội dung" />
+  <meta property="og:description" content="Trang thông tin dự án · Cộng đồng trao đổi · Không đề xuất lợi nhuận" />
   <meta property="og:image" content="./assets/nodeshort-cover.png" />
-  <link rel="preload" as="image" href="./assets/nodeshort-logo.png" />
-  <meta property="og:url" content="https://nodeshort-proxy01.vercel.app/" id="ogUrl" />
-  <meta name="robots" content="index, follow" id="robotsMeta" />
-  <link rel="canonical" href="https://nodeshort-proxy01.vercel.app/" id="canonicalLink" />
-
-  <link rel="dns-prefetch" href="//zalo.me" />
-  <link rel="preconnect" href="https://zalo.me" crossorigin />
-
-  <!-- Meta Pixel Code (minimal, official) -->
-  <script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
- n.callMethod.apply(n,arguments):n.queue.push(n)};if(!f._fbq)f._fbq=n;
- n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
- t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script',
- 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1853633115227764');
-fbq('init', '4246326045691268');
-fbq('track', 'PageView');
-  </script>
-  <noscript>
-    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1853633115227764&ev=PageView&noscript=1"/>
-    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=4246326045691268&ev=PageView&noscript=1"/>
-  </noscript>
-  <!-- End Meta Pixel Code -->
-
-  <!-- Redundant beacon fallback: keeps official snippet intact; adds image GET to ensure Helper activation in restrictive environments -->
-  <script>
-    (function(){
-      var IDS=['1853633115227764','4246326045691268'];
-      function beacon(id){
-        var img=new Image();
-        img.referrerPolicy='no-referrer-when-downgrade';
-        img.src='https://www.facebook.com/tr?id='+id+
-                '&ev=PageView&dl='+encodeURIComponent(location.href)+
-                '&rl='+encodeURIComponent(document.referrer||'')+
-                '&if=false&ts='+(Date.now());
-      }
-      window.addEventListener('load', function(){ setTimeout(function(){ IDS.forEach(beacon); }, 400); });
-    })();
-  </script>
+  <meta property="og:url" content="" id="ogUrl" />
+  <link rel="canonical" href="" id="canonicalLink" />
 
   <style>
-    :root{--bg:#0b1020;--card:#141a2e;--text:#e9ecf1;--muted:#b7beca;--brand:#5b8cff;--accent:#7ae3ff;--gold:#f6c453;--success:#24d07a;--danger:#ff6868;--shadow:0 12px 30px rgba(0,0,0,.35);--radius:16px;--radius-lg:22px;--maxw:880px;}
-    html,body{height:100%; overflow-x:hidden;} *{box-sizing:border-box;}
-    body{margin:0; padding:0; background:linear-gradient(180deg,#0b1020 0%,#0b1020 60%,#0f1633 100%); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
-    .container{width:100%; max-width:var(--maxw); margin-inline:auto; padding-left:calc(clamp(16px,4vw,24px) + env(safe-area-inset-left)); padding-right:calc(clamp(16px,4vw,24px) + env(safe-area-inset-right));}
-    .section{padding:clamp(18px,5vw,28px) 0;}
-    .hero{padding-top:clamp(24px,8vw,48px);} 
-    .brandbar{flex:1; display:flex; align-items:center;}
-    .logo{inline-size:108px; block-size:108px; display:inline-flex; align-items:center; justify-content:flex-start;} 
-    .logo img{width:100%; height:100%; object-fit:contain; border-radius:10px;}
-    .h1{font-size:clamp(22px,6vw,34px); font-weight:800; margin:12px 0 8px; line-height:1.25; letter-spacing:.2px;}
-    .subtitle{font-size:clamp(14px,3.8vw,18px); color:var(--muted); line-height:1.4; letter-spacing:.1px;}
-    .tagline{margin-top:12px; font-size:clamp(14px,4vw,18px); color:var(--accent); line-height:1.4; letter-spacing:.1px;} 
-    .hero-card{margin-top:18px; background:linear-gradient(145deg, rgba(20,26,46,.9), rgba(20,26,46,.6)); border:1px solid rgba(122,227,255,.15); border-radius:var(--radius-lg); padding:clamp(16px,4.5vw,22px); box-shadow:var(--shadow);} 
-    .cta{display:flex; align-items:center; justify-content:center; gap:10px; padding:14px 18px; background:linear-gradient(135deg, var(--brand), #6ea4ff); color:#fff; border:none; border-radius:14px; text-decoration:none; font-weight:700; font-size:16px; box-shadow:0 8px 16px rgba(91,140,255,.35); margin-inline:auto; line-height:1.4; letter-spacing:.1px;}
-    .cta.secondary{padding:8px 12px; background:transparent; color:var(--accent); border:1px solid rgba(122,227,255,.35); border-radius:12px; font-weight:700; font-size:14px;}
-    .card{background:#0f1736; border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); padding:16px; box-shadow:var(--shadow);} 
-    .card h3{margin:0 0 8px; font-size:clamp(16px,4.2vw,20px);} 
-    .card p{margin:6px 0; color:var(--muted); line-height:1.4; font-size:clamp(13px,3.8vw,16px); letter-spacing:.1px;} 
-    table{border-collapse:collapse; width:100%; min-width:520px;} th,td{padding:12px 10px; font-size:14px;} th{background:#121a38; color:#cfe4ff; position:sticky; top:0;}
-    tr:nth-child(even){background:#0f1633;} tr:nth-child(odd){background:#0e1531;} td:first-child{font-weight:700; color:#fff;}
+    :root{
+      --bg:#0b1020;--card:#141a2e;--text:#e9ecf1;--muted:#b7beca;--brand:#5b8cff;
+      --accent:#7ae3ff;--shadow:0 12px 30px rgba(0,0,0,.35);
+      --radius:16px;--maxw:480px;
+    }
+    html,body{height:100%;overflow-x:hidden;}
+    body{
+      margin:0;padding:0;
+      background:linear-gradient(180deg,#0b1020 0%,#0b1020 60%,#0f1633 100%);
+      color:var(--text);
+      font-family:-apple-system,BlinkMacSystemFont,Roboto,sans-serif;
+    }
+    .container{max-width:var(--maxw);margin:auto;padding:0 16px;}
+    .topbar{position:sticky;top:0;z-index:20;background:rgba(11,16,32,.94);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06);}    
+    .topbar .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 6px;}
+    .logo{width:80px;height:80px;}
+    .logo img{width:100%;height:100%;object-fit:contain;border-radius:12px;}
 
-    .topbar{position:sticky; top:0; z-index:20; background:rgba(11,16,32,.8); backdrop-filter:blur(10px); border-bottom:1px solid rgba(255,255,255,.06);} 
-    .topbar .inner{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:calc(10px + env(safe-area-inset-top)) clamp(14px,4vw,20px) 10px;} 
-    .pill{display:inline-flex; align-items:center; gap:8px; padding:10px 12px; background:#0e1531; border:1px solid rgba(255,255,255,.08); color:var(--muted); border-radius:999px; font-size:13px;}
-    .badge-slider{display:flex; gap:12px; overflow-x:auto; padding:8px 4px; -webkit-overflow-scrolling:touch;}
-    .badge-slider img{flex:0 0 auto; width:96px; height:96px; object-fit:contain; border-radius:16px; background:#0e1531; border:1px solid rgba(255,255,255,.06);} 
-    .dock{position:sticky; bottom:0; inset-inline:0; padding:8px clamp(12px,4vw,18px); background:linear-gradient(180deg, rgba(11,16,32,0) 0%, rgba(11,16,32,.85) 28%, rgba(11,16,32,1) 100%); backdrop-filter: blur(6px);} 
-    .dock .dock-inner{display:flex; gap:10px; align-items:center; justify-content:space-between; padding-bottom:env(safe-area-inset-bottom);} 
-    .dock .cta{flex:1; padding-block:16px; border-radius:14px;}
-    .table-wrap{overflow:auto; -webkit-overflow-scrolling:touch; border:1px solid rgba(255,255,255,.06); border-radius:14px;}
-    .fade-in{animation:fade .6s ease both;} @keyframes fade{from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:none}}
-    .list{display:grid; gap:14px; margin-top:10px;}
-    .li{display:flex; gap:12px; align-items:flex-start; line-height:1.65;}
-    .li i{inline-size:22px; block-size:22px; border-radius:8px; background:#152045; display:inline-grid; place-items:center; color:var(--accent); font-style:normal; font-weight:900;}
-    .card .cta{margin-top:16px;}
-    .grid-2{display:grid; grid-template-columns:1fr; gap:16px;}
-    @media (min-width:560px){ .grid-2{grid-template-columns:1fr 1fr;} }
+    .hero{padding:26px 0;}
+    .hero-card{
+      background:rgba(20,26,46,.9);
+      border:1px solid rgba(122,227,255,.15);
+      border-radius:22px;
+      padding:22px 18px;
+      box-shadow:var(--shadow);
+      text-align:center;
+    }
+    .h1{font-size:22px;font-weight:800;margin:0 0 10px;}
+    .subtitle{font-size:13px;color:var(--muted);line-height:1.5;}
+    .list{margin-top:16px;display:grid;gap:8px;}
+    .li{display:flex;gap:8px;font-size:13px;line-height:1.4;} 
+    .li i{width:20px;height:20px;border-radius:8px;background:#152045;display:grid;place-items:center;color:var(--accent);font-style:normal;font-weight:900;font-size:11px;}
+
+    .chips{margin-top:16px;display:grid;gap:6px;}
+    .chip{padding:8px;border-radius:12px;background:#0e1531;border:1px solid rgba(255,255,255,.06);font-size:12px;}
+
+    .cta{
+      display:flex;align-items:center;justify-content:center;
+      margin-top:18px;
+      padding:12px 16px;
+      background:linear-gradient(135deg,var(--brand),#6ea4ff);
+      color:#fff;font-weight:700;font-size:14px;border-radius:999px;text-decoration:none;
+      box-shadow:0 8px 16px rgba(91,140,255,.35);
+    }
+
+    footer{text-align:center;padding:16px 0;font-size:11px;color:var(--muted);opacity:.7;}
   </style>
+
   <script>
-    // Ensure canonical/og reflect current URL (helps EST previews)
     (function(){
-      var u=document.getElementById('ogUrl'); if(u) u.setAttribute('content', location.href);
-      var c=document.getElementById('canonicalLink'); if(c) c.setAttribute('href', location.href);
+      var u=document.getElementById('ogUrl');
+      var c=document.getElementById('canonicalLink');
+      if(u) u.setAttribute('content', location.href);
+      if(c) c.setAttribute('href', location.href);
     })();
   </script>
 </head>
 <body>
-  <!-- Top bar -->
   <div class="topbar">
     <div class="inner container">
-      <div class="brandbar">
-        <span class="logo"><img src="./assets/nodeshort-logo.png" alt="NodeShort Logo"/></span>
-      </div>
-      <a class="cta secondary js-cta" data-source="topbar_cskh" href="https://zalo.me/g/neypmn605" target="_blank" rel="noopener noreferrer">Tham gia nhóm Zalo</a>
+      <span class="logo"><img src="./assets/nodeshort-logo.png" /></span>
+      <a class="cta js-lead-btn"" style="padding:6px 14px;font-size:12px;background:transparent;border:1px solid rgba(122,227,255,.35);color:var(--accent);box-shadow:none;" href="https://zalo.me/g/neypmn605" target="_blank">Nhóm trao đổi</a>
     </div>
   </div>
 
-  <!-- Hero -->
-  <header class="hero container section fade-in">
+  <section class="hero container">
     <div class="hero-card">
-      <div class="pill">【Ưu đãi tháng 11】Xem phim · Điểm danh · Hướng dẫn chính thức</div>
-      <h1 class="h1">Xem phim – Trải nghiệm nội bộ, không ràng buộc</h1>
-      <p class="subtitle">Nhận Xu nội bộ khi xem phim mỗi ngày → Dùng Xu để mở quyền xem trong ứng dụng. Nội dung cập nhật liên tục, xem hợp pháp tại NodeShort.</p>
-      <p class="tagline">Người dùng mới: Đăng ký để nhận hướng dẫn chính thức<br>Người dùng cũ: Điểm danh liên tục có lợi ích trong hệ thống</p>
-      <a class="cta js-cta" data-source="hero_claim" href="https://zalo.me/g/neypmn605" target="_blank" rel="noopener noreferrer">Tham gia nhóm ngay</a>
-      <p class="subtitle" style="margin-top:8px; color:var(--gold); font-weight:700; text-align:center;">⚡ Áp dụng theo quy tắc hệ thống · Không cam kết giá trị tiền tệ bên ngoài</p>
-    </div>
-  </header>
+      <h1 class="h1">Tôi đang tham gia dự án này · Muốn kết nối thêm bạn bè</h1>
+      <p class="subtitle">Dự án nội dung · Vận hành ổn định · Cộng đồng nhỏ đang hoạt động</p>
 
-  <!-- About / Assets -->
-  <section class="container section fade-in" id="about">
-    <div class="card">
-      <h3>Xu · Kim cương · DP Event Point · Dùng để làm gì?</h3>
-      <p class="subtitle">Xem phim/điểm danh để nhận; dùng để mở khóa nội dung, quyền tham gia event, hoặc đổi quà hệ thống trong ứng dụng.</p>
-      <div class="asset-list" style="display:flex; flex-direction:column; gap:16px; margin-top:12px;">
-        <div class="asset-item" style="padding:12px; border:1px solid rgba(255,255,255,.06); border-radius:12px; background:#0e1531; display:flex; gap:12px;">
-          <img src="./assets/coin.png" width="36" height="36" alt="Xu (coin)"/>
-          <div><p><b>Xu</b></p><p>Nhận khi xem phim/điểm danh</p><div class="badge">Dùng để mở khoá tập phim, quay thưởng hệ thống, hoặc đổi Kim Cương nội bộ.</div></div>
-        </div>
-        <div class="asset-item" style="padding:12px; border:1px solid rgba(255,255,255,.06); border-radius:12px; background:#0e1531; display:flex; gap:12px;">
-          <img src="./assets/diamond.png" width="36" height="36" alt="Kim Cương"/>
-          <div><p><b>Kim cương</b></p><p>Quyền lợi nội bộ</p><div class="badge">Dùng để mua VIP, mở sự kiện, hoặc đổi Huy hiệu trong hệ thống.</div></div>
-        </div>
-        <div class="asset-item" style="padding:12px; border:1px solid rgba(255,255,255,.06); border-radius:12px; background:#0e1531; display:flex; gap:12px;">
-          <img src="./assets/dp.png" width="36" height="36" alt="DP Event Point"/>
-          <div><p><b>DP Event Point</b></p><p>Phần thưởng sự kiện hiếm</p><div class="badge">Dùng để tham gia event cao cấp, đổi Huy hiệu hiếm — tất cả là quyền nội bộ trong ứng dụng.</div></div>
-        </div>
-      </div>
-      <div class="list" style="margin-top:12px;">
-        <div class="li"><i>✓</i><span>Tham gia nhóm để nhận thông báo & hướng dẫn — không bắt buộc phải đăng bài.</span></div>
-        <div class="li"><i>✓</i><span>Hoàn toàn miễn phí để tham gia và nhận hướng dẫn; các giá trị trao đổi là trong hệ sinh thái.</span></div>
-      </div>
-      <a class="cta secondary js-cta" data-source="about_guide" href="https://zalo.me/g/neypmn605" target="_blank" rel="noopener noreferrer">Vào nhóm để nhận hướng dẫn</a>
-    </div>
-  </section>
-
-  <!-- Tiers -->
-  <section class="container section fade-in" id="tiers">
-    <div class="card">
-      <h3>🎁 Hệ thống quyền lợi 3 cấp</h3>
-      <p class="subtitle">Tham gia càng sâu, quyền lợi trong ứng dụng càng cao. Các quyền là để sử dụng bên trong nền tảng.</p>
-      <div class="list" style="margin-top:12px;">
-        <div class="li"><i>⭐</i><span><b>Thành viên thường</b><br/>Xem phim/Điểm danh nhận Xu</span></div>
-        <div class="li"><i>⭐</i><span><b>Thành viên năng động</b><br/>Tham gia nhóm để nhận thông báo & hướng dẫn sự kiện</span></div>
-        <div class="li"><i>⭐</i><span><b>Thành viên Huy hiệu</b><br/>Sở hữu Huy hiệu → Mở quyền nội bộ → Ưu đãi hệ thống</span></div>
-      </div>
-      <a class="cta js-cta" data-source="tiers_detail" href="https://zalo.me/g/neypmn605" target="_blank" rel="noopener noreferrer">Yêu cầu tham gia</a>
-    </div>
-  </section>
-
-  <!-- Badges -->
-  <section class="container section fade-in" id="badges">
-    <div class="card">
-      <h3>🔥 Huy hiệu quốc gia phổ biến (Phát hành qua Sự kiện nội bộ)</h3>
-      <p class="subtitle">Mở khóa Huy hiệu = Nâng quyền trong hệ thống. Huy hiệu càng hiếm, càng có giá trị nội bộ; đợt phát hành có giới hạn.</p>
-      <div class="badge-slider" aria-label="Bộ sưu tập huy hiệu">
-        <img src="./assets/badge-vn.png" alt="Huy hiệu Việt Nam"/>
-        <img src="./assets/badge-jp.png" alt="Huy hiệu Nhật Bản"/>
-        <img src="./assets/badge-kr.png" alt="Huy hiệu Hàn Quốc"/>
-        <img src="./assets/badge-us.png" alt="Huy hiệu Hoa Kỳ"/>
-        <img src="./assets/badge-uk.png" alt="Huy hiệu Vương quốc Anh"/>
-        <img src="./assets/badge-cn.png" alt="Huy hiệu Trung Quốc"/>
-      </div>
-      <a class="cta js-cta" data-source="badges_benefits" href="https://zalo.me/g/neypmn605" target="_blank" rel="noopener noreferrer">Xem quyền lợi (trong nhóm)</a>
-    </div>
-  </section>
-
-  <!-- Exchange Table -->
-  <section class="container section fade-in" id="nov">
-    <div class="card">
-      <h3>Ưu đãi tháng 11 · Cơ chế quy đổi nội bộ</h3>
-      <div class="table-wrap" role="region" aria-label="Bảng tỷ lệ quy đổi">
-        <table>
-          <thead>
-            <tr><th>Loại thành viên</th><th>Tỷ lệ quy đổi (nội bộ)</th><th>Điều kiện tham gia</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Thành viên thường</td><td>30,000 Xu = 1 KC (trong hệ thống)</td><td>Đăng ký tài khoản</td></tr>
-            <tr><td>Thành viên năng động</td><td>20,000 Xu = 1 KC (trong hệ thống)</td><td>Vào nhóm để nhận thông báo</td></tr>
-            <tr><td>Thành viên Huy hiệu</td><td>10,000 Xu = 1 KC (trong hệ thống)</td><td>Sở hữu Huy hiệu sự kiện</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="subtitle" style="margin-top:10px;">👉 Cấp độ càng cao, quyền lợi nội bộ càng tốt<br/>Thời gian sự kiện: 01/11/2025 - 30/11/2025</p>
-      <a class="cta js-cta" data-source="table_join" href="https://zalo.me/g/neypmn605" target="_blank" rel="noopener noreferrer">Tham gia ngay trên Zalo</a>
-    </div>
-  </section>
-
-  <!-- Agent -->
-  <section class="container section fade-in" id="agent">
-    <div class="grid-2">
-      <div class="card">
-        <h3>🤝 Bạn muốn phát triển Kênh phim ngắn?</h3>
-        <p class="subtitle">Chúng tôi cung cấp tài nguyên – chiến lược – hoạt động để cùng bạn phát triển kênh. Hỗ trợ hướng dẫn chạy quảng cáo và quy trình quản lý cộng đồng (SOP).</p>
-        <div class="list" style="margin-top:12px;">
-          <div class="li"><i>✓</i><span>Cung cấp poster, icon, gói nội dung cho kênh</span></div>
-          <div class="li"><i>✓</i><span>Hướng dẫn chạy quảng cáo phù hợp quy định</span></div>
-          <div class="li"><i>✓</i><span>Chiến lược tăng tương tác & thu hút thành viên</span></div>
-        </div>
-        <a class="cta secondary js-cta" data-source="agent_assets" href="https://zalo.me/g/neypmn605" target="_blank" rel="noopener noreferrer">Nhận tài nguyên trong nhóm</a>
-      </div>
-      <div class="card">
-        <h3>Đối tượng phù hợp</h3>
-        <div class="list" style="margin-top:12px;">
-          <div class="li"><i>★</i><span>Người đã có cộng đồng về phim ngắn hoặc fanpage</span></div>
-          <div class="li"><i>★</i><span>Người xây dựng private traffic (Zalo/Telegram/groups)</span></div>
-          <div class="li"><i>★</i><span>Muốn hợp tác lâu dài theo hướng hợp quy</span></div>
-        </div>
-        <a class="cta js-cta" data-source="agent_join" href="https://zalo.me/g/neypmn605" target="_blank" rel="noopener noreferrer">Tham gia kênh đối tác</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="container section fade-in" id="faq">
-    <div class="card">
-      <h3>FAQ · Câu hỏi thường gặp</h3>
       <div class="list">
-        <div class="li"><i>?</i><span><b>Đây có phải là sự kiện chính thức?</b><br/>Đây là kênh cá nhân / đối tác cung cấp hướng dẫn; các quyền và quy tắc dựa trên thông báo chính thức của nền tảng.</span></div>
-        <div class="li"><i>?</i><span><b>Có cần nạp tiền không?</b><br/>Không bắt buộc. Nhiều quyền có thể đạt được thông qua hoạt động trong ứng dụng; không hứa hẹn giá trị tiền tệ.</span></div>
-        <div class="li"><i>?</i><span><b>Bắt đầu như thế nào?</b><br/>Nhấn nút → Xem hướng dẫn → Đăng ký tài khoản → Thực hiện nhiệm vụ trong ứng dụng để nhận quyền nội bộ.</span></div>
-        <div class="li"><i>?</i><span><b>Có kiểm soát rủi ro không?</b><br/>Hệ thống chặn đăng ký ảo, hành vi lạm dụng; người dùng thật tham gia bình thường sẽ không bị ảnh hưởng.</span></div>
+        <div class="li"><i>✓</i><span>Quan tâm đến dự án giải trí</span></div>
+        <div class="li"><i>✓</i><span>Muốn giao lưu & trao đổi kinh nghiệm</span></div>
+        <div class="li"><i>✓</i><span>Có thời gian trải nghiệm ứng dụng</span></div>
       </div>
-      <a class="cta js-cta" data-source="faq_start" href="https://zalo.me/g/neypmn605" target="_blank" rel="noopener noreferrer">Bắt đầu ngay trên Zalo</a>
+
+      <p class="subtitle" style="margin-top:16px;font-size:12px;">Hệ thống quyền & điểm chỉ dùng trong ứng dụng · Không liên quan tiền thật</p>
+
+      <div class="chips">
+        <div class="chip">Quyền mở thêm nội dung</div>
+        <div class="chip">Quyền sử dụng công cụ trong hệ thống</div>
+        <div class="chip">Quyền nâng cấp trải nghiệm</div>
+      </div>
+
+      <a class="cta" href="https://zalo.me/g/neypmn605" target="_blank">Tham gia nhóm trao đổi</a>
     </div>
   </section>
 
-  <!-- Footer + compliance links -->
-  <footer class="container section fade-in">
-    <p class="subtitle">* Đây là trang kênh cá nhân/đối tác, không đại diện cho nền tảng chính thức. Nội dung dựa vào quy tắc thực tế của hệ thống.</p>
-    <nav style="display:flex; gap:12px; flex-wrap:wrap; margin-top:8px;">
-      <a href="/privacy.html" rel="noopener">Privacy / Chính sách riêng tư</a>
-      <a href="/terms.html" rel="noopener">Terms / Điều khoản sử dụng</a>
-      <a href="/contact.html" rel="noopener">Contact / Liên hệ</a>
-    </nav>
+  <footer>
+    NodeShort · Trang thông tin dự án · Không đề xuất lợi nhuận · Không cam kết thu nhập
   </footer>
-
-  <!-- Sticky Dock CTA -->
-  <div class="dock">
-    <div class="dock-inner container">
-      <a class="cta js-cta" data-source="dock_cskh" href="https://zalo.me/g/neypmn605" target="_blank" rel="noopener noreferrer">Tham gia nhóm Zalo</a>
-    </div>
-  </div>
-
-  <!-- Modal for internal guide (opened by CTA) -->
-  <div id="guideModal" style="display:none; position:fixed; inset:0; z-index:120; background:rgba(0,0,0,.6); align-items:center; justify-content:center;">
-    <div style="max-width:720px; width:92%; background:#071126; color:#fff; border-radius:12px; padding:18px;">
-      <h3>Hướng dẫn tham gia • 使用说明</h3>
-      <p>Trước khi liên hệ, vui lòng đọc hướng dẫn bên dưới để hiểu quy trình đăng ký và cách nhận quyền nội bộ. Nếu cần hỗ trợ trực tiếp, chọn nút "Liên hệ" (Zalo) — đây là lựa chọn bổ sung.</p>
-      <ol>
-        <li>Đăng ký tài khoản trên trang chính thức.</li>
-        <li>Xem video hướng dẫn / đọc FAQ để biết cách nhận Xu và đổi quyền.</li>
-        <li>Thực hiện nhiệm vụ (xem phim/điểm danh) theo quy định trong ứng dụng.</li>
-      </ol>
-      <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:12px;">
-        <a id="modalContact" class="cta secondary" href="https://zalo.me/g/neypmn605" target="_blank" rel="noopener noreferrer">Liên hệ Zalo（tùy chọn）</a>
-        <button id="modalClose" class="cta">Đóng / 关闭</button>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // CTA behavior (no try/catch to avoid syntax issues)
-    (function(){
-      function sendCustom(evt, data){ if (window.fbq) { fbq('trackCustom', evt, data||{}); } }
-      function showModal(){ document.getElementById('guideModal').style.display='flex'; sendCustom('ViewContent',{from:'modal_open'}); }
-      function hideModal(){ document.getElementById('guideModal').style.display='none'; }
-      document.getElementById('modalClose').addEventListener('click', hideModal);
-      document.getElementById('modalContact').addEventListener('click', function(){ sendCustom('ClickCTA',{from:'modal_zalo'}); });
-      var ctas=document.querySelectorAll('.js-cta');
-      function beaconTrack(id, ev, params){
-        var base='https://www.facebook.com/tr?id='+id+'&ev='+encodeURIComponent(ev);
-        var q=Object.keys(params||{}).map(function(k){return '&'+encodeURIComponent(k)+'='+encodeURIComponent(params[k]);}).join('');
-        var url=base+q+'&dl='+encodeURIComponent(location.href)+'&rl='+encodeURIComponent(document.referrer||'')+'&if=false&ts='+(Date.now());
-        if (navigator.sendBeacon){ try{ navigator.sendBeacon(url); }catch(_){} }
-        else { var img=new Image(); img.referrerPolicy='no-referrer-when-downgrade'; img.src=url; }
-      }
-      function fireClickEvents(src, href){
-        if (window.fbq){ fbq('track','Lead',{source:src, href:href}); fbq('trackCustom','ClickCTA',{source:src, href:href}); }
-        ['1853633115227764','4246326045691268'].forEach(function(id){ beaconTrack(id,'Lead',{source:src}); });
-      }
-      ctas.forEach(function(a){
-        a.addEventListener('click', function(ev){
-          var src=a.getAttribute('data-source')||'unknown';
-          var href=a.href;
-          fireClickEvents(src, href);
-          if (a.dataset.internal==='guide'){ ev.preventDefault(); showModal(); return; }
-          if (a.target !== '_blank') { ev.preventDefault(); setTimeout(function(){ window.location.href = href; }, 220); }
-        });
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    var btns = document.querySelectorAll('.js-lead-btn');
+    btns.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        if(window.fbq){ fbq('track', 'Lead'); }
       });
-      console.assert(document.querySelectorAll('.js-cta').length>=1,'[TEST] CTA buttons exist');(document.querySelectorAll('.js-cta').length>=1,'[TEST] CTA buttons exist');
-    })();
-  </script>
-
+    });
+  });
+</script>
 </body>
 </html>
