@@ -112,9 +112,10 @@
   <section class="hero container">
     <div class="hero-card">
       <h1 class="h1" style="line-height:1.35;">
-  Dự án mình đang tham gia · Kết nối những người cùng quan tâm<br>
-  <span style="font-size:18px;color:#7ae3ff;font-weight:600;display:block;margin-top:6px;">Bạn không làm một mình trong hành trình này</span>
-</h1>
+        Dự án mình đang tham gia · Kết nối những người cùng quan tâm<br>
+        <span style="font-size:18px;color:#7ae3ff;font-weight:600;display:block;margin-top:6px;">Bạn không làm một mình trong hành trình này</span>
+      </h1>
+
       <p class="subtitle">Dự án nội dung · Vận hành ổn định · Cộng đồng nhỏ đang hoạt động</p>
 
       <div class="list">
@@ -124,48 +125,35 @@
       </div>
 
       <p class="subtitle" style="margin-top:16px;font-size:12px;opacity:.85;">
-  Các mục trong ứng dụng chỉ phục vụ cho trải nghiệm nội bộ · Không liên quan tài chính
-</p>
+        Các mục trong ứng dụng chỉ phục vụ cho trải nghiệm nội bộ · Không liên quan tài chính
+      </p>
 
       <div class="chips" style="margin-top:20px;">
-  <div class="chip" style="font-size:13px;">Nội dung được cập nhật mỗi ngày</div>
-  <div class="chip" style="font-size:13px;">Chia sẻ mẹo sử dụng hệ thống dễ hiểu</div>
-  <div class="chip" style="font-size:13px;">Giao lưu cùng người đang trải nghiệm dự án</div>
-</div>
-        <div class="chip">Chia sẻ mẹo sử dụng hệ thống</div>
-        <div class="chip">Giao lưu với những người đang tham gia dự án</div>
-      </div>
-        
-        
+        <div class="chip" style="font-size:13px;">Nội dung được cập nhật mỗi ngày</div>
+        <div class="chip" style="font-size:13px;">Chia sẻ mẹo sử dụng hệ thống dễ hiểu</div>
+        <div class="chip" style="font-size:13px;">Giao lưu cùng người đang trải nghiệm dự án</div>
       </div>
 
-      <a class="cta" href="https://zalo.me/g/neypmn605" target="_blank">Vào nhóm trao đổi ngay</a>
+      <a class="cta js-lead-btn" href="https://zalo.me/g/neypmn605" target="_blank" style="margin-top:24px;font-size:15px;padding:13px 18px;letter-spacing:.2px;">Vào nhóm trao đổi ngay</a>
     </div>
   </section>
 
   <footer>
     NodeShort · Trang thông tin dự án · Không đề xuất lợi nhuận · Không cam kết thu nhập
   </footer>
-<script>
-  document.addEventListener('DOMContentLoaded', function(){
-    var btns = document.querySelectorAll('.js-lead-btn');
-    btns.forEach(function(btn){
-      btn.addEventListener('click', function(){
-        if(window.fbq){ fbq('track', 'Lead'); }
+
+  <script>
+    // Chỉ追踪主要行动按钮的 AddToCart 事件
+    document.addEventListener('DOMContentLoaded', function () {
+      var btns = document.querySelectorAll('.js-lead-btn');
+      btns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (window.fbq) {
+            fbq('track', 'AddToCart');
+          }
+        });
       });
     });
-  });
-</script>
-<script>
-  // Track Lead for all links
-  document.addEventListener('DOMContentLoaded', function() {
-    var links = document.querySelectorAll('a[href]');
-    links.forEach(function(a){
-      a.addEventListener('click', function(){
-        if (window.fbq) fbq('track','AddToCart');
-      });
-    });
-  });
-</script>
+  </script>
 </body>
 </html>
