@@ -1,162 +1,72 @@
 <!DOCTYPE html>
-<html lang="vi" data-theme="dark">
+<html lang="vi">
 <head>
   <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="format-detection" content="telephone=no,email=no,address=no" />
+  <title>NodeShort • Khu trao đổi định hướng</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <meta name="theme-color" content="#0b1020" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <title>NodeShort • Khu trao đổi dự án</title>
-
-  <!-- Unified Meta Pixel Code -->
-  <script>
-    !function(f,b,e,v,n,t,s){
-      if(f.fbq)return; n=f.fbq=function(){ n.callMethod ?
-        n.callMethod.apply(n,arguments) : n.queue.push(arguments) };
-      if(!f._fbq)f._fbq=n; n.push=n; n.loaded=!0; n.version='2.0';
-      n.queue=[]; t=b.createElement(e); t.async=!0;
-      t.src=v; s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)
-    }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-
-    // 初始化像素
-    fbq('init', '2285968961850373');
-
-    // 统一 PageView 事件
-    fbq('track', 'PageView');
-  </script>
-  <noscript>
-    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2285968961850373&ev=PageView&noscript=1" />
-  </noscript>
-  <!-- End Unified Meta Pixel Code -->
-
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="NodeShort • Khu trao đổi dự án" />
-  <meta property="og:description" content="Khu trao đổi dành cho người đang tìm dự án phù hợp · Chia sẻ cách vận hành và hệ thống" />
-  <meta property="og:image" content="./assets/nodeshort-cover.png" />
-  <meta property="og:url" content="" id="ogUrl" />
-  <link rel="canonical" href="" id="canonicalLink" />
-
   <style>
-    :root{
-      --bg:#0b1020;--card:#141a2e;--text:#e9ecf1;--muted:#b7beca;--brand:#5b8cff;
-      --accent:#7ae3ff;--shadow:0 12px 30px rgba(0,0,0,.35);
-      --radius:20px;--maxw:520px;
-    }
-    *{box-sizing:border-box;}
-    html,body{height:100%;margin:0;padding:0;}
-    body{
-      background:radial-gradient(circle at top,#151c3b 0,#0b1020 55%,#050712 100%);
-      color:var(--text);
-      font-family:-apple-system,BlinkMacSystemFont,Roboto,Segoe UI,sans-serif;
-      display:flex;flex-direction:column;align-items:stretch;
-    }
-    .topbar{position:sticky;top:0;z-index:10;background:rgba(6,10,24,.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06);} 
-    .topbar-inner{max-width:var(--maxw);margin:0 auto;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;} 
-    .logo{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px;color:#f5f7ff;} 
-    .logo img{height:26px;width:auto;border-radius:6px;display:block;}
-    .top-cta{padding:8px 16px;border-radius:999px;border:none;cursor:pointer;font-size:13px;font-weight:600;color:#fff;background:linear-gradient(135deg,#5b8cff,#7ae3ff);box-shadow:0 8px 18px rgba(91,140,255,.45);text-decoration:none;} 
-
-    main{flex:1;display:flex;align-items:center;justify-content:center;padding:20px 12px 24px;}
-    .hero-card{width:100%;max-width:var(--maxw);margin:0 auto;background:rgba(20,26,46,.96);border-radius:24px;padding:24px 20px 22px;border:1px solid rgba(122,227,255,.15);box-shadow:var(--shadow);} 
-    .h1{font-size:22px;font-weight:800;margin:0 0 10px;text-align:center;} 
-    .h1 span{font-size:16px;font-weight:600;color:var(--accent);} 
-    .subtitle{text-align:center;font-size:12px;color:var(--muted);margin:4px 0 14px;} 
-
-    .list{margin-top:6px;display:grid;gap:8px;font-size:13px;} 
-    .li{display:flex;align-items:flex-start;gap:8px;} 
-    .li i{flex-shrink:0;width:20px;height:20px;border-radius:8px;background:#162048;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:11px;font-weight:800;color:var(--accent);} 
-
-    .chips{margin-top:18px;display:grid;gap:8px;} 
-    .chip{border-radius:999px;background:#0f152f;border:1px solid rgba(255,255,255,.06);padding:8px 14px;font-size:12px;color:var(--muted);text-align:center;} 
-
-    .cta{
-      display:block;width:100%;margin-top:22px;padding:13px 18px;border-radius:999px;
-      text-align:center;font-size:15px;font-weight:700;color:#fff;text-decoration:none;
-      background:linear-gradient(135deg,#5b8cff,#6ea4ff);box-shadow:0 10px 22px rgba(91,140,255,.45);
-    }
-
-    footer{text-align:center;font-size:11px;color:var(--muted);padding:10px 0 18px;opacity:.8;}
-
-    /* Mobile fine-tuning */
-    @media (max-width:480px){
-      .topbar-inner{padding:8px 12px;}
-      main{padding:16px 10px 20px;}
-      .hero-card{padding:20px 16px 18px;border-radius:20px;}
-      .h1{font-size:19px;}
-      .h1 span{font-size:14px;}
-      .subtitle{font-size:11px;}
-      .list{font-size:12px;}
-      .chip{font-size:11px;padding:7px 12px;}
-      .cta{font-size:14px;padding:12px 16px;margin-top:18px;}
-    }
+    body { background: radial-gradient(circle at top, #141b34 0%, #0b1020 60%, #060913 100%); }
   </style>
-
-  <script>
-    (function(){
-      var u=document.getElementById('ogUrl');
-      var c=document.getElementById('canonicalLink');
-      if(u) u.setAttribute('content', location.href);
-      if(c) c.setAttribute('href', location.href);
-    })();
-  </script>
 </head>
-<body>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <div class="logo">
-        <img src="./assets/nodeshort-logo.png" alt="NodeShort Logo" />
-        <span>NodeShort · Khu trao đổi</span>
+<body class="text-slate-200 font-sans antialiased min-h-screen flex flex-col">
+
+  <!-- Topbar -->
+  <header class="sticky top-0 z-20 backdrop-blur-xl bg-black/40 border-b border-white/10">
+    <div class="max-w-xl mx-auto flex items-center justify-between px-4 py-3">
+      <div class="flex items-center gap-2">
+        <img src="./assets/nodeshort-logo.png" class="h-7 w-auto rounded-md" />
+        <span class="font-semibold text-sm tracking-wide">NodeShort · Khu trao đổi</span>
       </div>
-      <a href="https://zalo.me/g/neypmn605" target="_blank" class="top-cta js-lead-btn">Vào khu trao đổi ngay</a>
+      <a href="https://zalo.me/g/neypmn605" target="_blank" class="px-4 py-2 rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 shadow-md text-white text-xs font-semibold hover:opacity-90 transition js-lead-btn">Vào ngay</a>
     </div>
   </header>
 
-  <main>
-    <section class="hero-card">
-      <h1 class="h1">
-        Khu trao đổi dành cho người đang tìm dự án phù hợp<br>
-        <span>Chia sẻ cách vận hành · Tìm hiểu hệ thống · Trao đổi hướng đi mới</span>
+  <!-- Hero Card -->
+  <main class="flex-1 flex items-center justify-center px-4 py-8">
+    <section class="w-full max-w-xl bg-slate-900/70 border border-cyan-300/10 rounded-2xl shadow-2xl p-6">
+
+      <h1 class="text-center text-xl font-extrabold leading-tight">
+        Khu trao đổi định hướng dành cho người muốn tìm lộ trình phù hợp<br/>
+        <span class="text-cyan-300 text-base font-semibold">Tham khảo cách làm · Nhìn rõ hệ thống · Chọn hướng đi an toàn</span>
       </h1>
 
-      <p class="subtitle">Không liên quan tài chính · Không cam kết · Không nhiệm vụ</p>
+      <p class="text-center text-xs text-slate-400 mt-2">Không bán hàng · Không cam kết · Không nhiệm vụ</p>
 
-      <div class="list">
-        <div class="li"><i>✓</i><span>Thảo luận mô hình vận hành ứng dụng</span></div>
-        <div class="li"><i>✓</i><span>Xem cách người khác triển khai hướng đi mới</span></div>
-        <div class="li"><i>✓</i><span>Cùng phân tích ưu và nhược điểm của từng cách làm</span></div>
+      <!-- Points -->
+      <div class="mt-4 space-y-3 text-sm">
+        <div class="flex gap-3"><div class="h-5 w-5 rounded-md bg-slate-800 flex items-center justify-center text-cyan-300 text-xs font-bold">✓</div>Hiểu cấu trúc vận hành và các mô hình khác nhau</div>
+        <div class="flex gap-3"><div class="h-5 w-5 rounded-md bg-slate-800 flex items-center justify-center text-cyan-300 text-xs font-bold">✓</div>Xem người khác triển khai hướng đi mới như thế nào</div>
+        <div class="flex gap-3"><div class="h-5 w-5 rounded-md bg-slate-800 flex items-center justify-center text-cyan-300 text-xs font-bold">✓</div>Tránh sai lầm phổ biến · Tối ưu quyết định của bạn</div>
       </div>
 
-      <div class="chips">
-        <div class="chip">Gợi ý cách vận hành an toàn</div>
-        <div class="chip">Chia sẻ kinh nghiệm triển khai</div>
-        <div class="chip">Tìm hướng đi phù hợp với khả năng của bạn</div>
+      <!-- Chips -->
+      <div class="grid gap-2 mt-6 text-xs text-slate-300">
+        <div class="px-4 py-2 rounded-full bg-slate-800/60 border border-white/10 text-center">Gợi ý hướng đi phù hợp với năng lực</div>
+        <div class="px-4 py-2 rounded-full bg-slate-800/60 border border-white/10 text-center">Chia sẻ kinh nghiệm triển khai thực tế</div>
+        <div class="px-4 py-2 rounded-full bg-slate-800/60 border border-white/10 text-center">Tư duy hệ thống · Không chạy theo đám đông</div>
       </div>
 
-      <a class="cta js-lead-btn" href="https://zalo.me/g/neypmn605" target="_blank">
-        Vào khu trao đổi · Xem các hướng đi đang được thảo luận
+      <!-- CTA -->
+      <a href="https://zalo.me/g/neypmn605" target="_blank" class="mt-6 block text-center w-full py-3 rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 font-bold text-white shadow-xl hover:opacity-90 transition js-lead-btn">
+        Tham gia khu trao đổi ngay
       </a>
     </section>
   </main>
 
-  <footer>
-    NodeShort · Trang thông tin trao đổi · Không đề xuất lợi nhuận · Không cam kết thu nhập
-  </footer>
+  <!-- Footer -->
+  <footer class="text-center text-xs text-slate-500 py-6">NodeShort · Trang trao đổi định hướng · Không đề xuất lợi nhuận · Không cam kết thu nhập</footer>
 
+  <!-- AddToCart Event -->
   <script>
-    // 跟踪进入交流区按钮的 Lead 事件
     document.addEventListener('DOMContentLoaded', function () {
-      var btns = document.querySelectorAll('.js-lead-btn');
-      btns.forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          if (window.fbq) {
-            fbq('track', 'Lead');
-          }
-        });
-      });
+      const btns = document.querySelectorAll('.js-lead-btn');
+      btns.forEach(btn => btn.addEventListener('click', () => {
+        if (window.fbq) fbq('track', 'AddToCart');
+      }));
     });
   </script>
+
 </body>
 </html>
