@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title id="t_title"></title>
+  <meta id="t_desc_meta" name="description" content="" />
+  <meta property="og:type" content="website" />
+  <meta id="t_og_title" property="og:title" content="" />
+  <meta id="t_og_desc" property="og:description" content="" />
+  <meta property="og:image" content="assets/nodeshort-og-1200x630.png" />
+  <meta property="og:url" content="https://www.nodeshort.com" />
+  <meta name="theme-color" content="#0b1020" />
+  <style>
+    :root{--bg:#0b1020;--card:#151a2d;--text:#eef2ff;--muted:#8a94a7;--brand:#f6c453;--accent:#6cc7ff;--line:#1f2742;--radius:16px;--shadow:0 6px 18px rgba(0,0,0,.35)}
+    body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 -apple-system,Segoe UI,Roboto,Helvetica,Arial}
+    .container{max-width:1200px;margin:0 auto;padding:24px}
+    .header{position:sticky;top:0;background:rgba(11,16,32,.86);border-bottom:1px solid var(--line);backdrop-filter:blur(8px);z-index:50}
+    .nav{display:flex;justify-content:space-between;align-items:center;gap:16px}
+    .btn{padding:10px 16px;border-radius:12px;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--text);min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+    .btn.primary{background:var(--brand);color:#222;border-color:transparent;font-weight:700}
+    .hero{padding:32px 24px 0}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start}
+    .hero-title{font-size:clamp(24px, 3.4vw, 40px);font-weight:800;margin:0 0 10px;line-height:1.18}
+    .hero-sub{color:var(--muted);margin:0 0 8px}
+    .online{display:inline-flex;align-items:center;gap:8px;background:rgba(122,227,255,.12);border:1px solid var(--accent);padding:8px 12px;border-radius:14px;font-weight:600;margin:12px 0}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0 18px}
+    .stat-item{border:1px solid var(--line);background:var(--card);padding:14px;border-radius:14px}
+    .slider{position:relative;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#000;height:520px;max-width:380px;margin-left:auto}
+    .slides{display:flex;height:100%;transition:transform .6s ease;will-change:transform}
+    .slides > *{flex:0 0 100%;min-width:100%;height:100%;display:block}
+    .slides picture{display:block;height:100%}
+    .slides picture img{width:100%;height:100%;object-fit:cover;display:block}
+    .dots{position:absolute;left:0;right:0;bottom:8px;display:flex;justify-content:center;gap:8px}
+    .dot{width:8px;height:8px;border-radius:50%;background:#888;opacity:.8}
+    .dot.active{background:#fff;opacity:1}
+    .section{padding:28px 24px}
+    .section-title{font-size:clamp(20px,2.2vw,26px);margin:0 0 14px;font-weight:800;line-height:1.22}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .card{background:var(--card);border:1px solid var(--line);padding:16px;border-radius:var(--radius)}
+    .warn{background:rgba(246,196,83,.1);border:1px solid var(--brand);padding:14px;border-radius:14px}
+    .footer{padding:24px;text-align:center;color:var(--muted);border-top:1px solid var(--line)}
+    @media(max-width:900px){
+      .hero-grid{grid-template-columns:1fr}
+      .stats{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:1fr}
+      .slider{height:420px;max-width:360px;margin:16px auto 0}
+    }
+    .card.faq{border-radius:18px;padding:6px}
+    .card.faq details{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:10px 0;overflow:hidden;transition:border-color .2s ease, box-shadow .2s ease}
+    .card.faq details[open]{border-color:var(--brand);box-shadow:0 0 0 1px var(--brand)}
+    .card.faq summary{padding:14px 16px;cursor:pointer;display:flex;align-items:center;gap:12px;list-style:none;font-weight:700;color:var(--text);border-radius:12px;background:linear-gradient(0deg,rgba(255,255,255,.02),rgba(255,255,255,.02))}
+    .card.faq summary::-webkit-details-marker{display:none}
+    .card.faq summary:focus{outline:2px solid rgba(108,199,255,.6)}
+    .card.faq .qicon{width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;background:rgba(246,196,83,.15);border:1px solid var(--brand);font-size:18px}
+    .card.faq summary::after{content:"▾";margin-left:auto;transition:transform .2s ease;opacity:.9}
+    .card.faq details[open] summary::after{transform:rotate(180deg)}
+    .card.faq .faq-body{max-height:0;overflow:hidden;opacity:.0;transition:max-height .28s ease, opacity .22s ease}
+    .card.faq details[open] .faq-body{max-height:320px;opacity:1}
+    .card.faq p{margin:0;padding:0 16px 14px;color:var(--muted);line-height:1.65}
+    .muted{color:var(--muted)}
+  </style>
+
+  <script>
+    // 文案配置（落地页只介绍活动 + 提供官网链接）
+    var TEXT = {
+      title: "NodeShort · Xem phim, tích Xu, đổi Kim Cương",
+      desc: "Trang giới thiệu sự kiện xem phim trên NodeShort – xem phim theo gu, tích Xu trong app, đổi Kim Cương để mở một số quyền lợi giải trí minh bạch.",
+      hero_title: "Xem phim miễn phí · Truy cập NodeShort để nhận ưu đãi",
+      hero_sub: "Truy cập trang NodeShort và đăng ký tài khoản trong ứng dụng. Vào mục 'Tài khoản → Nhiệm vụ tân thủ' để hoàn thành nhiệm vụ mới. Trong nhóm chat, liên hệ CSKH để nhận thông tin sự kiện mới nhất.",
+      btn_cta: "Truy cập NodeShort",
+      stat_1: "Thành viên thường: 30.000 Xu → 💎 x1",
+      stat_2: "Thành viên năng động: 20.000 Xu → 💎 x1",
+      stat_3: "Thành viên Huy hiệu: 10.000 Xu → 💎 x1",
+      period: "Sự kiện đang diễn ra trong tháng này",
+      vip_tip: "KC (Kim Cương) là đơn vị cơ bản sử dụng trong ứng dụng.\nGiá trị tham khảo: 1 KC ≈ 26.400 VND.\n💎KC được dùng để mở khóa VIP và các quyền lợi giải trí.",
+      footer: "© 2025 NodeShort. Tất cả quyền được bảo lưu · Sản phẩm giải trí · Không cam kết lợi nhuận"
+    };
+
+    // 简单测试工具
+    function assert(cond, msg){
+      if(!cond){ console.error('[TEST FAIL]', msg); }
+    }
+
+    document.addEventListener('DOMContentLoaded', function(){
+      function injectMultiline(id, text){
+        var el = document.getElementById(id);
+        if(!el) return;
+        while(el.firstChild){ el.removeChild(el.firstChild); }
+        var str = String(text || "");
+        var lines = str.split(/\r?\n/);
+        for(var i=0;i<lines.length;i++){
+          if(i>0){ el.appendChild(document.createElement('br')); }
+          el.appendChild(document.createTextNode(lines[i]));
+        }
+      }
+
+      // Meta & 标题
+      var tTitle = document.getElementById('t_title');
+      if(tTitle) tTitle.textContent = TEXT.title;
+      var metaDesc = document.getElementById('t_desc_meta');
+      if(metaDesc) metaDesc.setAttribute('content', TEXT.desc);
+      var ogTitle = document.getElementById('t_og_title');
+      if(ogTitle) ogTitle.setAttribute('content', TEXT.title);
+      var ogDesc = document.getElementById('t_og_desc');
+      if(ogDesc) ogDesc.setAttribute('content', TEXT.desc);
+
+      var heroTitle = document.getElementById('hero_title');
+      if(heroTitle) heroTitle.textContent = TEXT.hero_title;
+      injectMultiline('hero_sub', TEXT.hero_sub);
+      injectMultiline('btn_cta', TEXT.btn_cta);
+      injectMultiline('stat_1', TEXT.stat_1);
+      injectMultiline('stat_2', TEXT.stat_2);
+      injectMultiline('stat_3', TEXT.stat_3);
+      injectMultiline('period', TEXT.period);
+      injectMultiline('vip_tip', TEXT.vip_tip);
+      injectMultiline('footer_text', TEXT.footer);
+
+      // 基础测试
+      assert(heroTitle && heroTitle.textContent.length > 0, 'hero_title should be filled');
+      assert(document.getElementById('btn_cta') && document.getElementById('btn_cta').textContent.length > 0, 'btn_cta should be filled');
+      assert(document.getElementById('stat_1') && document.getElementById('stat_1').textContent.indexOf('Thành viên') === 0, 'stat_1 format');
+    });
+  </script>
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s){
+    if(f.fbq)return; n=f.fbq=function(){ n.callMethod ?
+      n.callMethod.apply(n,arguments) : n.queue.push(arguments); };
+    if(!f._fbq)f._fbq=n; n.push=n; n.loaded=!0; n.version='2.0';
+    n.queue=[]; t=b.createElement(e); t.async=!0;
+    t.src=v; s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s);
+  }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+
+  fbq('init', '25119435244413294');
+  fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=25119435244413294&ev=PageView&noscript=1" />
+  </noscript>
+  <!-- End Meta Pixel Code -->
+</head>
+<body>
+<header class="header">
+  <div class="container nav">
+    <img src="assets/nodeshort-logo.png" alt="NodeShort" width="140" height="32"/>
+    <div class="actions">
+      <button class="btn primary" id="btn_cta" onclick="openApp('header')">Truy cập NodeShort</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero container">
+  <div class="hero-grid">
+    <div>
+      <h1 class="hero-title" id="hero_title">Xem phim miễn phí · Truy cập NodeShort để nhận ưu đãi</h1>
+      <p class="hero-sub" id="hero_sub"></p>
+
+      <div class="online">Đang trực tuyến: <b id="onlineNum">—</b></div>
+      
+      <div class="stats">
+        <div class="stat-item"><p id="stat_1">Thành viên thường: 30.000 Xu → 💎 x1</p></div>
+        <div class="stat-item"><p id="stat_2">Thành viên năng động: 20.000 Xu → 💎 x1</p></div>
+        <div class="stat-item"><p id="stat_3">Thành viên Huy hiệu: 10.000 Xu → 💎 x1</p></div>
+      </div>
+      <p class="muted" id="period" style="font-size:12px">Sự kiện đang diễn ra trong tháng này</p>
+      <p class="muted" id="vip_tip" style="font-size:12px;margin-top:4px">
+        KC (Kim Cương) là đơn vị cơ bản sử dụng trong ứng dụng.<br>
+        Giá trị tham khảo: 1 KC ≈ 26.400 VND.<br>
+        💎KC được dùng để mở khóa VIP và các quyền lợi giải trí.
+      </p>
+    </div>
+
+    <div class="slider" aria-label="Preview">
+      <div class="slides" id="slides">
+        <picture>
+          <source srcset="./assets/nodeshort-app-home-768.webp" type="image/webp">
+          <img src="./assets/nodeshort-app-home-768.png" alt="Home preview" loading="eager" decoding="async">
+        </picture>
+        <picture>
+          <source srcset="./assets/nodeshort-app-player-768.webp" type="image/webp">
+          <img src="./assets/nodeshort-app-player-768.png" alt="Player preview" loading="lazy" decoding="async">
+        </picture>
+        <picture>
+          <source srcset="./assets/nodeshort-app-toplist-768.webp" type="image/webp">
+          <img src="./assets/nodeshort-app-toplist-768.png" alt="Top list preview" loading="lazy" decoding="async">
+        </picture>
+      </div>
+      <div class="dots" id="dots" aria-label="Slider">
+        <span class="dot active" aria-current="true"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container section">
+  <h2 class="section-title">3 bước đơn giản</h2>
+  <div class="grid-3">
+    <div class="card">
+      <h3>① Truy cập NodeShort</h3>
+      <p>Nhấn nút "Truy cập NodeShort" để mở trang chính thức và đăng ký tài khoản.</p>
+    </div>
+    <div class="card">
+      <h3>② Hoàn thành Nhiệm vụ tân thủ</h3>
+      <p>Trong app, vào mục “Tài khoản → Nhiệm vụ tân thủ” để hoàn thành các nhiệm vụ cơ bản.</p>
+    </div>
+    <div class="card">
+      <h3>③ Nhận thông tin sự kiện</h3>
+      <p>Sau khi hoàn thành nhiệm vụ, vào nhóm chat và liên hệ CSKH để nhận thông tin sự kiện mới nhất.</p>
+    </div>
+  </div>
+  <div style="border-top:1px solid var(--line);margin:22px 0 6px;padding-top:16px">
+    <ul style="margin:0;padding-left:18px;color:var(--muted);font-size:14px;line-height:1.55">
+      <li>Nội dung phong phú, cập nhật mỗi ngày.</li>
+      <li>Xem là tự tích Xu, không cần thao tác phức tạp.</li>
+      <li>Trang này chỉ giới thiệu sự kiện và cung cấp lối vào trang NodeShort chính thức.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="container section" id="rules">
+  <h2 class="section-title">Quy định & chống gian lận</h2>
+  <div class="warn" role="note">
+    <p>1. Tất cả quyền lợi đều được hiển thị rõ trong ứng dụng và được hệ thống tự động kiểm tra.</p>
+    <p>2. Hệ thống sẽ quét và phát hiện các hành vi bất thường như: dùng SĐT ảo, đăng ký hàng loạt, dùng tool/giả lập, can thiệp thiết bị…</p>
+    <p>3. Nếu phát hiện gian lận, các quyền lợi liên quan sẽ bị thu hồi và tài khoản có thể bị khóa theo quy định.</p>
+    <p>4. NodeShort là sản phẩm giải trí số, không cung cấp sản phẩm tài chính và không cam kết bất kỳ mức lợi nhuận hay hoàn vốn nào.</p>
+    <p>5. Khi tham gia, bạn được xem là đã đọc và đồng ý với các quy định bảo vệ người dùng nêu trên.</p>
+  </div>
+</section>
+
+<section class="container section" id="faq">
+  <h2 class="section-title">Câu hỏi thường gặp (FAQ)</h2>
+  <div class="card faq">
+    <details>
+      <summary><span class="qicon">🚀</span>Trang này dùng để làm gì?</summary>
+      <div class="faq-body"><p>Đây là trang giới thiệu sự kiện xem phim và cung cấp lối vào trang chính thức của NodeShort. Mọi thao tác đăng ký, đăng nhập và xem phim đều diễn ra trong app hoặc trang chính.</p></div>
+    </details>
+    <details>
+      <summary><span class="qicon">🌐</span>Tôi làm thế nào để vào NodeShort?</summary>
+      <div class="faq-body"><p>Nhấn nút "Truy cập NodeShort" ở phía trên để mở trang chính thức. Từ đó bạn có thể đăng ký tài khoản và tải app (nếu có hướng dẫn).</p></div>
+    </details>
+    <details>
+      <summary><span class="qicon">💎</span>Xu và Kim Cương có phải sản phẩm tài chính không?</summary>
+      <div class="faq-body"><p>Không. Xu và Kim Cương là đơn vị quyền lợi/điểm thưởng dùng trong hệ sinh thái NodeShort, không phải sản phẩm tài chính và không kèm cam kết lợi nhuận.</p></div>
+    </details>
+  </div>
+</section>
+
+<footer class="footer">
+  <img src="assets/nodeshort-logo.png" alt="NodeShort" style="max-height:28px;opacity:.9;display:block;margin:0 auto 8px" />
+  <p id="footer_text">© 2025 NodeShort. Tất cả quyền được bảo lưu · Sản phẩm giải trí · Không cam kết lợi nhuận</p>
+</footer>
+
+<script>
+(function(){
+  // 打点 + 跳官网
+  window.openApp = function(source){
+    try{
+      if(window.fbq){
+        fbq('track','ViewContent',{source: source || 'cta'});
+        fbq('trackCustom','ClickCTA',{source: source || 'cta'});
+      }
+    }catch(e){
+      console.error('[FBQ ERROR]', e);
+    }
+    window.open('https://www.nodeshort.com/h5/#/?code=M43BI0','_blank','noopener,noreferrer');
+  };
+
+  // 轮播
+  var slides = document.getElementById('slides');
+  if(slides){
+    var dotsWrap = document.getElementById('dots');
+    var dots = dotsWrap ? dotsWrap.getElementsByClassName('dot') : [];
+    var idx = 0;
+    var total = slides.children.length;
+    setInterval(function(){
+      idx = (idx + 1) % total;
+      slides.style.transform = 'translateX(-' + (idx * 100) + '%)';
+      for(var i=0;i<dots.length;i++){
+        if(i === idx){
+          dots[i].classList.add('active');
+          dots[i].setAttribute('aria-current','true');
+        }else{
+          dots[i].classList.remove('active');
+          dots[i].setAttribute('aria-current','false');
+        }
+      }
+    }, 3500);
+  }
+
+  // 在线人数模拟
+  var n = document.getElementById('onlineNum');
+  if(n){
+    function R(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
+    function fmt(v){ return new Intl.NumberFormat('vi-VN').format(v); }
+    var base = R(8253,37617);
+    function tick(){
+      var hour = new Date().getHours();
+      var factor = 1;
+      if(hour>=20 || hour<=1) factor = 1.8;
+      else if(hour>=12 && hour<18) factor = 1.4;
+      else if(hour>=8 && hour<12) factor = 1.2;
+      var delta = Math.round(R(-3374,3374) * factor);
+      base = Math.min(37617, Math.max(8253, base + delta));
+      n.textContent = fmt(Math.trunc(base));
+    }
+    tick();
+    setInterval(tick, R(8000,15000));
+  }
+
+  // FAQ 只展开一个
+  var faq = document.querySelector('.faq');
+  if(faq){
+    var items = faq.getElementsByTagName('details');
+    for(var i=0;i<items.length;i++){
+      (function(item){
+        item.addEventListener('toggle', function(){
+          if(item.open){
+            for(var j=0;j<items.length;j++){
+              if(items[j] !== item){ items[j].open = false; }
+            }
+          }
+        });
+      })(items[i]);
+    }
+  }
+})();
+</script>
+
+<button id="cta-floating" style="position:fixed;bottom:calc(22px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);background:var(--brand);color:#222;padding:12px 22px;border-radius:999px;font-weight:800;font-size:16px;cursor:pointer;z-index:99;box-shadow:var(--shadow);border:none;" onclick="openApp('floating_cta')">Truy cập NodeShort</button>
+</body>
+</html>
