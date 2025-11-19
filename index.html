@@ -11,8 +11,35 @@
   <meta property="og:image" content="assets/nodeshort-og-1200x630.png" />
   <meta property="og:url" content="https://www.nodeshort.com" />
   <meta name="theme-color" content="#0b1020" />
+
+  <!-- ✅ Meta 官方标准像素写法：放在 <head> 顶部，先于任何自定义脚本 -->
+  <script>
+    !function(f,b,e,v,n,t,s){
+      if(f.fbq)return;
+      n=f.fbq=function(){ n.callMethod ?
+        n.callMethod.apply(n,arguments) : n.queue.push(arguments); };
+      if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s);
+    }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+
+    fbq('init', '25119435244413294');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=25119435244413294&ev=PageView&noscript=1" />
+  </noscript>
+  <!-- End Meta Pixel Code -->
+
   <style>
-    :root{--bg:#0b1020;--card:#151a2d;--text:#eef2ff;--muted:#8a94a7;--brand:#f6c453;--accent:#6cc7ff;--line:#1f2742;--radius:16px;--shadow:0 6px 18px rgba(0,0,0,.35)}
+    :root{
+      --bg:#0b1020;--card:#151a2d;--text:#eef2ff;--muted:#8a94a7;
+      --brand:#f6c453;--accent:#6cc7ff;--line:#1f2742;
+      --radius:16px;--shadow:0 6px 18px rgba(0,0,0,.35)
+    }
     body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 -apple-system,Segoe UI,Roboto,Helvetica,Arial}
     .container{max-width:1200px;margin:0 auto;padding:24px}
     .header{position:sticky;top:0;background:rgba(11,16,32,.86);border-bottom:1px solid var(--line);backdrop-filter:blur(8px);z-index:50}
@@ -21,14 +48,14 @@
     .btn.primary{background:var(--brand);color:#222;border-color:transparent;font-weight:700}
     .hero{padding:32px 24px 0}
     .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start}
-    .hero-title{font-size:clamp(24px, 3.4vw, 40px);font-weight:800;margin:0 0 10px;line-height:1.18}
+    .hero-title{font-size:clamp(24px,3.4vw,40px);font-weight:800;margin:0 0 10px;line-height:1.18}
     .hero-sub{color:var(--muted);margin:0 0 8px}
     .online{display:inline-flex;align-items:center;gap:8px;background:rgba(122,227,255,.12);border:1px solid var(--accent);padding:8px 12px;border-radius:14px;font-weight:600;margin:12px 0}
     .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0 18px}
     .stat-item{border:1px solid var(--line);background:var(--card);padding:14px;border-radius:14px}
     .slider{position:relative;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#000;height:520px;max-width:380px;margin-left:auto}
     .slides{display:flex;height:100%;transition:transform .6s ease;will-change:transform}
-    .slides > *{flex:0 0 100%;min-width:100%;height:100%;display:block}
+    .slides>*{flex:0 0 100%;min-width:100%;height:100%;display:block}
     .slides picture{display:block;height:100%}
     .slides picture img{width:100%;height:100%;object-fit:cover;display:block}
     .dots{position:absolute;left:0;right:0;bottom:8px;display:flex;justify-content:center;gap:8px}
@@ -55,14 +82,14 @@
     .card.faq .qicon{width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;background:rgba(246,196,83,.15);border:1px solid var(--brand);font-size:18px}
     .card.faq summary::after{content:"▾";margin-left:auto;transition:transform .2s ease;opacity:.9}
     .card.faq details[open] summary::after{transform:rotate(180deg)}
-    .card.faq .faq-body{max-height:0;overflow:hidden;opacity:.0;transition:max-height .28s ease, opacity .22s ease}
+    .card.faq .faq-body{max-height:0;overflow:hidden;opacity:0;transition:max-height .28s ease, opacity .22s ease}
     .card.faq details[open] .faq-body{max-height:320px;opacity:1}
     .card.faq p{margin:0;padding:0 16px 14px;color:var(--muted);line-height:1.65}
     .muted{color:var(--muted)}
   </style>
 
   <script>
-    // 文案配置（落地页只介绍活动 + 提供官网链接）
+    // 文案配置
     var TEXT = {
       title: "NodeShort · Xem phim, tích Xu, đổi Kim Cương",
       desc: "Trang giới thiệu sự kiện xem phim trên NodeShort – xem phim theo gu, tích Xu trong app, đổi Kim Cương để mở một số quyền lợi giải trí minh bạch.",
@@ -77,7 +104,6 @@
       footer: "© 2025 NodeShort. Tất cả quyền được bảo lưu · Sản phẩm giải trí · Không cam kết lợi nhuận"
     };
 
-    // 简单测试工具
     function assert(cond, msg){
       if(!cond){ console.error('[TEST FAIL]', msg); }
     }
@@ -87,66 +113,49 @@
         var el = document.getElementById(id);
         if(!el) return;
         while(el.firstChild){ el.removeChild(el.firstChild); }
-        var str = String(text || "");
-        var lines = str.split(/\r?\n/);
+        var lines = String(text || "").split(/\r?\n/);
         for(var i=0;i<lines.length;i++){
-          if(i>0){ el.appendChild(document.createElement('br')); }
+          if(i>0) el.appendChild(document.createElement('br'));
           el.appendChild(document.createTextNode(lines[i]));
         }
       }
 
-      // Meta & 标题
-      var tTitle = document.getElementById('t_title');
-      if(tTitle) tTitle.textContent = TEXT.title;
-      var metaDesc = document.getElementById('t_desc_meta');
-      if(metaDesc) metaDesc.setAttribute('content', TEXT.desc);
-      var ogTitle = document.getElementById('t_og_title');
-      if(ogTitle) ogTitle.setAttribute('content', TEXT.title);
-      var ogDesc = document.getElementById('t_og_desc');
-      if(ogDesc) ogDesc.setAttribute('content', TEXT.desc);
+      try{
+        var tTitle = document.getElementById('t_title');
+        if(tTitle) tTitle.textContent = TEXT.title;
+        var metaDesc = document.getElementById('t_desc_meta');
+        if(metaDesc) metaDesc.setAttribute('content', TEXT.desc);
+        var ogTitle = document.getElementById('t_og_title');
+        if(ogTitle) ogTitle.setAttribute('content', TEXT.title);
+        var ogDesc = document.getElementById('t_og_desc');
+        if(ogDesc) ogDesc.setAttribute('content', TEXT.desc);
 
-      var heroTitle = document.getElementById('hero_title');
-      if(heroTitle) heroTitle.textContent = TEXT.hero_title;
-      injectMultiline('hero_sub', TEXT.hero_sub);
-      injectMultiline('btn_cta', TEXT.btn_cta);
-      injectMultiline('stat_1', TEXT.stat_1);
-      injectMultiline('stat_2', TEXT.stat_2);
-      injectMultiline('stat_3', TEXT.stat_3);
-      injectMultiline('period', TEXT.period);
-      injectMultiline('vip_tip', TEXT.vip_tip);
-      injectMultiline('footer_text', TEXT.footer);
+        var heroTitle = document.getElementById('hero_title');
+        if(heroTitle) heroTitle.textContent = TEXT.hero_title;
 
-      // 基础测试
-      assert(heroTitle && heroTitle.textContent.length > 0, 'hero_title should be filled');
-      assert(document.getElementById('btn_cta') && document.getElementById('btn_cta').textContent.length > 0, 'btn_cta should be filled');
-      assert(document.getElementById('stat_1') && document.getElementById('stat_1').textContent.indexOf('Thành viên') === 0, 'stat_1 format');
+        injectMultiline('hero_sub', TEXT.hero_sub);
+        injectMultiline('btn_cta', TEXT.btn_cta);
+        injectMultiline('stat_1', TEXT.stat_1);
+        injectMultiline('stat_2', TEXT.stat_2);
+        injectMultiline('stat_3', TEXT.stat_3);
+        injectMultiline('period', TEXT.period);
+        injectMultiline('vip_tip', TEXT.vip_tip);
+        injectMultiline('footer_text', TEXT.footer);
+
+        // 轻量自测，不抛异常
+        assert(heroTitle && heroTitle.textContent.length > 0, 'hero_title filled');
+        assert(document.getElementById('btn_cta') && document.getElementById('btn_cta').textContent.length > 0, 'btn_cta filled');
+        assert(document.getElementById('stat_1') && document.getElementById('stat_1').textContent.indexOf('Thành viên') === 0, 'stat_1 format');
+      }catch(e){
+        console.error('[INIT ERROR]', e);
+      }
     });
   </script>
-
-  <!-- Meta Pixel Code -->
-  <script>
-  !function(f,b,e,v,n,t,s){
-    if(f.fbq)return; n=f.fbq=function(){ n.callMethod ?
-      n.callMethod.apply(n,arguments) : n.queue.push(arguments); };
-    if(!f._fbq)f._fbq=n; n.push=n; n.loaded=!0; n.version='2.0';
-    n.queue=[]; t=b.createElement(e); t.async=!0;
-    t.src=v; s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s);
-  }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-
-  fbq('init', '25119435244413294');
-  fbq('track', 'PageView');
-  </script>
-  <noscript>
-    <img height="1" width="1" style="display:none"
-         src="https://www.facebook.com/tr?id=25119435244413294&ev=PageView&noscript=1" />
-  </noscript>
-  <!-- End Meta Pixel Code -->
 </head>
 <body>
 <header class="header">
   <div class="container nav">
-    <img src="assets/nodeshort-logo.png" alt="NodeShort" width="140" height="32"/>
+    <img src="assets/nodeshort-logo.png" alt="NodeShort" width="140" height="32" />
     <div class="actions">
       <button class="btn primary" id="btn_cta" onclick="openApp('header')">Truy cập NodeShort</button>
     </div>
@@ -160,7 +169,7 @@
       <p class="hero-sub" id="hero_sub"></p>
 
       <div class="online">Đang trực tuyến: <b id="onlineNum">—</b></div>
-      
+
       <div class="stats">
         <div class="stat-item"><p id="stat_1">Thành viên thường: 30.000 Xu → 💎 x1</p></div>
         <div class="stat-item"><p id="stat_2">Thành viên năng động: 20.000 Xu → 💎 x1</p></div>
@@ -257,17 +266,24 @@
   <p id="footer_text">© 2025 NodeShort. Tất cả quyền được bảo lưu · Sản phẩm giải trí · Không cam kết lợi nhuận</p>
 </footer>
 
+<button id="cta-floating"
+        style="position:fixed;bottom:calc(22px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);
+        background:var(--brand);color:#222;padding:12px 22px;border-radius:999px;font-weight:800;font-size:16px;
+        cursor:pointer;z-index:99;box-shadow:var(--shadow);border:none;"
+        onclick="openApp('floating_cta')">
+  Truy cập NodeShort
+</button>
+
 <script>
 (function(){
-  // 打点 + 跳官网
+  // 统一出口：打开官网，顺带打点（非必须，可以先只保留 PageView）
   window.openApp = function(source){
     try{
       if(window.fbq){
-        fbq('track','ViewContent',{source: source || 'cta'});
         fbq('trackCustom','ClickCTA',{source: source || 'cta'});
       }
     }catch(e){
-      console.error('[FBQ ERROR]', e);
+      console.error('[FBQ CLICK ERROR]', e);
     }
     window.open('https://www.nodeshort.com/h5/#/?code=M43BI0','_blank','noopener,noreferrer');
   };
@@ -277,8 +293,7 @@
   if(slides){
     var dotsWrap = document.getElementById('dots');
     var dots = dotsWrap ? dotsWrap.getElementsByClassName('dot') : [];
-    var idx = 0;
-    var total = slides.children.length;
+    var idx = 0, total = slides.children.length;
     setInterval(function(){
       idx = (idx + 1) % total;
       slides.style.transform = 'translateX(-' + (idx * 100) + '%)';
@@ -323,7 +338,7 @@
         item.addEventListener('toggle', function(){
           if(item.open){
             for(var j=0;j<items.length;j++){
-              if(items[j] !== item){ items[j].open = false; }
+              if(items[j] !== item) items[j].open = false;
             }
           }
         });
@@ -332,7 +347,5 @@
   }
 })();
 </script>
-
-<button id="cta-floating" style="position:fixed;bottom:calc(22px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);background:var(--brand);color:#222;padding:12px 22px;border-radius:999px;font-weight:800;font-size:16px;cursor:pointer;z-index:99;box-shadow:var(--shadow);border:none;" onclick="openApp('floating_cta')">Truy cập NodeShort</button>
 </body>
 </html>
